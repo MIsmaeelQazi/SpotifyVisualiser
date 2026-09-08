@@ -2,7 +2,7 @@ const DaCanvas = document.getElementById("Bars");
 const DaBrush = DaCanvas.getContext("2d");
 
 function Size(){
-    DaCanvas.width = window.innnerWidth;
+    DaCanvas.width = window.innerWidth;
     DaCanvas.height = window.innerHeight;
 }
 
