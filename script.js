@@ -3,7 +3,7 @@ const DaBrush = DaCanvas.getContext("2d");
 
 function Size(){
     DaCanvas.width = window.innnerWidth;
-    DaCanvas.height = window.innnerHeight;
+    DaCanvas.height = window.innerHeight;
 }
 
 Size();
