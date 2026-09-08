@@ -5,7 +5,7 @@
 }
 
 body {
-    background: #ff0202;
+    background: #000000;
     overflow: hidden;
 
 }
@@ -15,8 +15,6 @@ body {
     inset:0;
     width:100vw;
     height:100vh;
-    display: block;
-    background: black;
 }
 
 #Album,#SongInfo,#Controls{
