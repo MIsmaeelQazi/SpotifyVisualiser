@@ -24,7 +24,7 @@ function Bar(){
         if (Frequencies[_] === undefined){
             Frequencies[_] = Math.random
         }
-        let Height = Frequency *MaxHeight;
+        let Height = Freq *MaxHeight;
         DaBrush.fillRect(x,CenterY - Height/2,5,Height)
         
     }
