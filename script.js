@@ -19,10 +19,9 @@ function Bar(){
     height += 1;
 }
 
-<<<<<<< HEAD
+
 Bar()
 //test
-=======
 function MovingOnes(){
     Bar();
     requestAnimationFrame(MovingOnes);
@@ -30,7 +29,4 @@ function MovingOnes(){
 }
 
 
-// tes
-
-
->>>>>>> 1cd7cb48b11952d60cb8134a284706a1c280b13b
+// test
