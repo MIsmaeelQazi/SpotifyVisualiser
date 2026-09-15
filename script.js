@@ -7,7 +7,7 @@ let MaxHeight = 300;
 function Size(){
     DaCanvas.width = window.innerWidth;
     DaCanvas.height = window.innerHeight;
-    Center = DaCanvas.width/2;
+    CenterX = DaCanvas.width/2;
 }
 Size();
 window.addEventListener("resize",Size);
@@ -22,7 +22,7 @@ function Bar(){
         let Distance = Math.abs(x - CenterX);
         let Frequency = Math.random();
         let Height = Frequency *300;
-        DaBrush.fillRect(x,CenterY - Height/2,Height)
+        DaBrush.fillRect(x,CenterY - Height/2,5,Height)
         
     }
 }
