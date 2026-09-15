@@ -13,7 +13,7 @@ function Size(){
 Size();
 window.addEventListener("resize",Size);
 
-
+let Frequencies = [];
 let height = 100;
 function Bar(){
     DaBrush.clearRect(0,0,DaCanvas.width,DaCanvas.height);
@@ -21,7 +21,9 @@ function Bar(){
     for(let _=0;_<notes;_++){
         let x = (DaCanvas.width/notes)*_;
         let Distance = Math.abs(x - CenterX);
-        let Frequency = Math.random();
+        if (Frequencies[_] === undefined){
+            Frequencies[_] = Math.random
+        }
         let Height = Frequency *MaxHeight;
         DaBrush.fillRect(x,CenterY - Height/2,5,Height)
         
