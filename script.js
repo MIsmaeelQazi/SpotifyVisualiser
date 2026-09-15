@@ -9,12 +9,28 @@ function Size(){
 Size();
 window.addEventListener("resize",Size);
 
+
+let height = 100;
 function Bar(){
 
     DaBrush.clearRect(0,0,DaCanvas.width,DaCanvas.height);
     DaBrush.fillStyle = "white";
-    DaBrush.fillRect(DaCanvas.width/2 -25,DaCanvas.height / 2, 50, 100);
+    DaBrush.fillRect(DaCanvas.width/2 -25,DaCanvas.height / 2, 50, height);
+    height += 1;
 }
 
+<<<<<<< HEAD
 Bar()
 //test
+=======
+function MovingOnes(){
+    Bar();
+    requestAnimationFrame(MovingOnes);
+    
+}
+
+
+// tes
+
+
+>>>>>>> 1cd7cb48b11952d60cb8134a284706a1c280b13b
