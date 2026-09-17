@@ -46,4 +46,19 @@ function MovingOnes(){
     
 }
 
+function Controls(){
+    if (DaAudio.state === "suspended"){
+        DaAudio.resume();
+    }
+    if (Muzic.paused){
+        document.getElementById("PlayPause").innerText = "pause";
+    }
+    else{
+        Muzic.pause();
+        document.getElementById("PlayPause").innerText = "play"
+    }
+
+
+}
+
 MovingOnes();
