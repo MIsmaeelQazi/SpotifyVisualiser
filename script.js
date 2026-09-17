@@ -1,13 +1,13 @@
 const DaCanvas = document.getElementById("Bars");
 const DaBrush = DaCanvas.getContext("2d");
 const Muzic = document.getElementById("Muzic")
-const audio = new (window.AudioContext || window.webkitAudioContext)();
-const analysier = audio.createAnalyser();
-const Source = audio.createMediaElementSource(Muzic);
+const DaAudio = new (window.AudioContext || window.webkitAudioContext)();
+const analysier = DaAudio.createAnalyser();
+const Source = DaAudio.createMediaElementSource(Muzic);
 
 
 Source.connect(analysier);
-analysier.connect(audio.destination);
+analysier.connect(DaAudio.destination);
 analysier.fftSize = 128;
 const AudioData = new Uint8Array(analysier.frequencyBinCount);
 
@@ -24,9 +24,6 @@ function Size(){
 }
 Size();
 window.addEventListener("resize",Size);
-
-let Frequencies = [];
-let height = 100;
 function Bar(){
     DaBrush.clearRect(0,0,DaCanvas.width,DaCanvas.height);
     DaBrush.fillStyle = "white";
