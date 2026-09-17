@@ -34,7 +34,7 @@ function Bar(){
         let Distance = Math.abs(x - CenterX);
         let Freq = AudioData[_]/255;
         let Height = Freq *MaxHeight;
-        DaBrush.fillRect(x,baseline - Height/2,5,Height)
+        DaBrush.fillRect(x,baseline,5,-Height)
         
     }
 }
