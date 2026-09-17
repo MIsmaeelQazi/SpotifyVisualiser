@@ -51,6 +51,7 @@ function Controls(){
         DaAudio.resume();
     }
     if (Muzic.paused){
+        Muzic.play();
         document.getElementById("PlayPause").innerText = "pause";
     }
     else{
