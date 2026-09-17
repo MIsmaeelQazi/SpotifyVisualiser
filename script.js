@@ -46,7 +46,7 @@ function MovingOnes(){
     
 }
 
-function Controls(){
+function togglePlayPause(){
     if (DaAudio.state === "suspended"){
         DaAudio.resume();
     }
