@@ -1,5 +1,6 @@
 const DaCanvas = document.getElementById("Bars");
 const DaBrush = DaCanvas.getContext("2d");
+const Muzic = document.getElementById("Muzic")
 let notes = 50;
 let CenterX = DaCanvas.width/2;
 let CenterY = DaCanvas.height/2;
