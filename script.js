@@ -8,7 +8,7 @@ const Source = audio.createMediaElementSource(Muzic);
 
 Source.connect(analysier);
 analysier.connect(audio.destination);
-analysier.fftSize = 120;
+analysier.fftSize = 128;
 const AudioData = new Uint8Array(analysier.frequencyBinCount);
 
 
@@ -30,7 +30,7 @@ let height = 100;
 function Bar(){
     DaBrush.clearRect(0,0,DaCanvas.width,DaCanvas.height);
     DaBrush.fillStyle = "white";
-    analysier.getByteFrequencyData(FrequencyData);
+    analysier.getByteFrequencyData(AudioData);
     for(let _=0;_<notes;_++){
         let x = (DaCanvas.width/notes)*_;
         let Distance = Math.abs(x - CenterX);
