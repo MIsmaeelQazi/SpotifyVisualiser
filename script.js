@@ -4,6 +4,14 @@ const Muzic = document.getElementById("Muzic")
 const audio = new (window.AudioContext || window.webkitAudioContext)();
 const analysier = audio.createAnalyser();
 const Source = audio.createMediaElementSource(Muzic);
+
+
+Source.connect(analysier);
+analysier.connect(audio.destination);
+analysier.fftSize = 120;
+const AudioData = new Uint8Array(analysier.frequencyBinCount);
+
+
 let notes = 50;
 let CenterX = DaCanvas.width/2;
 let CenterY = DaCanvas.height/2;
@@ -22,14 +30,11 @@ let height = 100;
 function Bar(){
     DaBrush.clearRect(0,0,DaCanvas.width,DaCanvas.height);
     DaBrush.fillStyle = "white";
+    analysier.getByteFrequencyData(FrequencyData);
     for(let _=0;_<notes;_++){
         let x = (DaCanvas.width/notes)*_;
         let Distance = Math.abs(x - CenterX);
-        if (Frequencies[_] === undefined){
-            Frequencies[_] = Math.random() ;
-        }
-        Frequencies[_] += Math.random() - Frequencies[_]* 0.05;
-        let Freq = Frequencies[_];
+        let Freq = AudioData[_]/255;
         let Height = Freq *MaxHeight;
         DaBrush.fillRect(x,CenterY - Height/2,5,Height)
         
