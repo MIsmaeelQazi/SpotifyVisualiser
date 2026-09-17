@@ -26,12 +26,11 @@ Size();
 window.addEventListener("resize",Size);
 function Bar(){
     DaBrush.clearRect(0,0,DaCanvas.width,DaCanvas.height);
-    DaBrush.fillStyle = "1db954";
+    DaBrush.fillStyle = "#1db954";
     analysier.getByteFrequencyData(AudioData);
     let barbase = CenterY + 200;
     for(let _=0;_<notes;_++){
         let x = (DaCanvas.width/notes)*_;
-        let Distance = Math.abs(x - CenterX);
         let Freq = AudioData[_]/255;
         let Height = Freq *MaxHeight;
         DaBrush.fillRect(x,barbase,5,-Height)
