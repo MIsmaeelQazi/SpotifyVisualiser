@@ -6,19 +6,26 @@ analysier.fftSize = 512;
 analysier.smoothingTimeConstant = 0.85;
 const AudioData = new Uint8Array(analysier.frequencyBinCount)
 const colors = [
-    { topEdge: "#ff003c", topMid: "#ff5e00", center: "#0a0005", bottomMid: "#ff00aa", bottomEdge: "#00ffff", shadow: "#ff00aa" },
-    { topEdge: "#00ff33", topMid: "#ffcc00", center: "#050a05", bottomMid: "#6600ff", bottomEdge: "#00ffff", shadow: "#00ff33" },
-    { topEdge: "#ff4500", topMid: "#ff9900", center: "#000510", bottomMid: "#104e8b", bottomEdge: "#00ffff", shadow: "#104e8b" },
-    { topEdge: "#00d4ff", topMid: "#0055ff", center: "#000510", bottomMid: "#5d3fd3", bottomEdge: "#aaff00", shadow: "#0055ff" },
-    { topEdge: "#4b0032", topMid: "#110022", center: "#000000", bottomMid: "#110022", bottomEdge: "#4b0032", shadow: "#4b0082" }
-];
-let DaTheme = 1;
+    { topEdge: "#ffcc00", topMid: "#cc0033", center: "#050000", bottomMid: "#0088ff", bottomEdge: "#ff00ff", shadow: "#0088ff" },
+    { topEdge: "#ffffff", topMid: "#0055ff", center: "#000005", bottomMid: "#5d3fd3", bottomEdge: "#00ff00", shadow: "#5d3fd3" },
+    { topEdge: "#ffcc00", topMid: "#00cc66", center: "#000500", bottomMid: "#0088ff", bottomEdge: "#aa00ff", shadow: "#00cc66" },
+    { topEdge: "#ff6600", topMid: "#8b0000", center: "#050000", bottomMid: "#003311", bottomEdge: "#ff0000", shadow: "#ff0000" },
+    { topEdge: "#ffffff", topMid: "#0033aa", center: "#000005", bottomMid: "#cc0033", bottomEdge: "#ff9900", shadow: "#0033aa" },
+    { topEdge: "#00ff00", topMid: "#5d3fd3", center: "#050005", bottomMid: "#cc0033", bottomEdge: "#ffcc00", shadow: "#5d3fd3" },
+    { topEdge: "#ffffff", topMid: "#ffaa00", center: "#050500", bottomMid: "#00cc66", bottomEdge: "#00ffcc", shadow: "#ffaa00" },
+    { topEdge: "#aaff00", topMid: "#334400", center: "#000000", bottomMid: "#330066", bottomEdge: "#00ffff", shadow: "#330066" },
+    { topEdge: "#6600ff", topMid: "#220044", center: "#000000", bottomMid: "#220044", bottomEdge: "#6600ff", shadow: "#220044" }];
+let DaTheme = 0;
 window.addEventListener("keydown",(event)=> {
-    if (event.key==="1") DaTheme = 0;
-    if (event.key==="2") DaTheme = 1;
-    if (event.key==="3") DaTheme = 2;
-    if (event.key==="4") DaTheme = 3;
-    if (event.key==="5") DaTheme = 4;
+    
+    if (event.key==="ArrowRight") DaTheme += 1;
+    if (event.key==="ArrowLeft") DaTheme -= 1;
+    if (DaTheme < 0){
+        DaTheme = length(colors);}
+    if (DaTheme >= length(colors)){
+        DaTheme = 0;
+    }
+
 });
 
 
@@ -69,9 +76,9 @@ function Bar(){
     let Theme = colors[DaTheme];
     let colorGradient = DaBrush.createLinearGradient(0,barbase-MaxHeight,0,barbase +MaxHeight);
     colorGradient.addColorStop(0,Theme.topEdge);
-    colorGradient.addColorStop(0.25,Theme.topMid);
+    colorGradient.addColorStop(0.4,Theme.topMid);
     colorGradient.addColorStop(0.5,Theme.center);
-    colorGradient.addColorStop(0.75,Theme.bottomMid);
+    colorGradient.addColorStop(0.6,Theme.bottomMid);
     colorGradient.addColorStop(1,Theme.bottomEdge);
 
     DaBrush.fillStyle = colorGradient;
