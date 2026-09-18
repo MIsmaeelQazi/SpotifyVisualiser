@@ -21,14 +21,17 @@ window.addEventListener("keydown",(event)=> {
 });
 
 
-let notes = 64;
+let notes;
 let CenterX,CenterY;
-let MaxHeight = 250;
+let MaxHeight;
 function Size(){
     DaCanvas.width = window.innerWidth;
     DaCanvas.height = window.innerHeight;
     CenterX = DaCanvas.width/2;
     CenterY = DaCanvas.height/2;
+
+    MaxHeight = DaCanvas.height*0.45;
+    notes = Math.min(150,Math.floor(DaCanvas.width/25));
 }
 
 Size();
@@ -63,11 +66,11 @@ function Bar(){
 
     let Theme = colors[DaTheme];
     let colorGradient = DaBrush.createLinearGradient(0,barbase-MaxHeight,0,barbase +MaxHeight);
-    colorGradient.addColorStop(0,Theme.edge);
+    colorGradient.addColorStop(0,Theme.top);
     colorGradient.addColorStop(0.25,Theme.mid);
     colorGradient.addColorStop(0.5,Theme.center);
     colorGradient.addColorStop(0.75,Theme.mid);
-    colorGradient.addColorStop(1,Theme.edge);
+    colorGradient.addColorStop(1,Theme.top);
 
     DaBrush.fillStyle = colorGradient;
     DaBrush.shadowBlur = 15;
