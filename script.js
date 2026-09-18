@@ -39,12 +39,13 @@ window.addEventListener("resize",Size);
 
 async function startVisualizer(){
     try {
-        const stream = await navigator.mediaDevices.getDisplayMedia({video:true,audio:true});
-        const source = DaAudio.createMediaStreamSource(stream);
-        source.connect(analysier);
         if (DaAudio.state === "suspended"){
             DaAudio.resume();
         }
+        const stream = await navigator.mediaDevices.getDisplayMedia({video:true,audio:true});
+        const source = DaAudio.createMediaStreamSource(stream);
+        source.connect(analysier);
+        
         document.getElementById("UILayer").classList.add("hidden");
         MovingOnes();
     }
