@@ -31,7 +31,7 @@ async function startVisualizer(){
     }
     catch(err){
         console.error("Audio capture failed:", err);
-        document.getElementsById("Start".innerText = "capture denied - try again")
+        document.getElementsById("Start").innerText = "capture denied - try again";
     }
 }
 
