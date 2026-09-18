@@ -6,16 +6,31 @@ analysier.fftSize = 512;
 analysier.smoothingTimeConstant = 0.85;
 const AudioData = new Uint8Array(analysier.frequencyBinCount)
 const colors = [
-    { topEdge: "#ffcc00", topMid: "#cc0033", center: "#050000", bottomMid: "#0088ff", bottomEdge: "#ff00ff", shadow: "#0088ff" },
-    { topEdge: "#ffffff", topMid: "#0055ff", center: "#000005", bottomMid: "#5d3fd3", bottomEdge: "#00ff00", shadow: "#5d3fd3" },
-    { topEdge: "#ffcc00", topMid: "#00cc66", center: "#000500", bottomMid: "#0088ff", bottomEdge: "#aa00ff", shadow: "#00cc66" },
-    { topEdge: "#ff6600", topMid: "#8b0000", center: "#050000", bottomMid: "#003311", bottomEdge: "#ff0000", shadow: "#ff0000" },
-    { topEdge: "#ffffff", topMid: "#0033aa", center: "#000005", bottomMid: "#cc0033", bottomEdge: "#ff9900", shadow: "#0033aa" },
-    { topEdge: "#00ff00", topMid: "#5d3fd3", center: "#050005", bottomMid: "#cc0033", bottomEdge: "#ffcc00", shadow: "#5d3fd3" },
-    { topEdge: "#ffffff", topMid: "#ffaa00", center: "#050500", bottomMid: "#00cc66", bottomEdge: "#00ffcc", shadow: "#ffaa00" },
-    { topEdge: "#aaff00", topMid: "#334400", center: "#000000", bottomMid: "#330066", bottomEdge: "#00ffff", shadow: "#330066" },
-    { topEdge: "#6600ff", topMid: "#220044", center: "#000000", bottomMid: "#220044", bottomEdge: "#6600ff", shadow: "#220044" }];
-let DaTheme = 0;
+    { name: "VI / JINX", bg: "radial-gradient(circle at center, #1a0005 0%, #000000 100%)", topEdge: "#ffcc00", topMid: "#cc0033", center: "#050000", bottomMid: "#0088ff", bottomEdge: "#ff00ff", shadow: "#0088ff" },
+    { name: "JAYCE / VIKTOR", bg: "radial-gradient(circle at center, #00051a 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#0055ff", center: "#000005", bottomMid: "#5d3fd3", bottomEdge: "#00ff00", shadow: "#5d3fd3" },
+    { name: "EKKO / JINX", bg: "radial-gradient(circle at center, #001a0a 0%, #000000 100%)", topEdge: "#ffcc00", topMid: "#00cc66", center: "#000500", bottomMid: "#0088ff", bottomEdge: "#aa00ff", shadow: "#00cc66" },
+    { name: "VANDER / SILCO", bg: "radial-gradient(circle at center, #1a0500 0%, #000000 100%)", topEdge: "#ff6600", topMid: "#8b0000", center: "#050000", bottomMid: "#003311", bottomEdge: "#ff0000", shadow: "#ff0000" },
+    { name: "CAITLYN / VI", bg: "radial-gradient(circle at center, #05051a 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#0033aa", center: "#000005", bottomMid: "#cc0033", bottomEdge: "#ff9900", shadow: "#0033aa" },
+    { name: "SEVIKA / VI", bg: "radial-gradient(circle at center, #0f001a 0%, #000000 100%)", topEdge: "#00ff00", topMid: "#5d3fd3", center: "#050005", bottomMid: "#cc0033", bottomEdge: "#ffcc00", shadow: "#5d3fd3" },
+    { name: "HEIMERDINGER / EKKO", bg: "radial-gradient(circle at center, #1a1500 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#ffaa00", center: "#050500", bottomMid: "#00cc66", bottomEdge: "#00ffcc", shadow: "#ffaa00" },
+    { name: "SINGED / VIKTOR", bg: "radial-gradient(circle at center, #0a1a00 0%, #000000 100%)", topEdge: "#aaff00", topMid: "#334400", center: "#000000", bottomMid: "#330066", bottomEdge: "#00ffff", shadow: "#330066" },
+    { name: "PURE AMBIENT", bg: "radial-gradient(circle at center, #05001a 0%, #000000 100%)", topEdge: "#6600ff", topMid: "#220044", center: "#000000", bottomMid: "#220044", bottomEdge: "#6600ff", shadow: "#220044" }];
+
+
+    DaTheme = 0;
+function UpdateUI(){
+    let Theme = colors[DaTheme]
+    document.body.style.background = Theme.bg;
+    const StartButton = document.getElementById("Start");
+    StartButton.innerText = "START:" + Theme.name;
+    StartButton.style.borderColor = Theme.shadow;
+    StartButton.style.color = Theme.shadow;
+    StartButton.style.boxShadow = `0 0 15px ${Theme.shadow}40, inset 0 0 10px ${Theme.shadow}20`;
+    StartButton.setAttribute("data-theme",Theme.name);
+}
+UpdateUI();
+
+
 window.addEventListener("keydown",(event)=> {
     
     if (event.key==="ArrowRight") DaTheme += 1;
@@ -25,7 +40,7 @@ window.addEventListener("keydown",(event)=> {
     if (DaTheme >= colors.length){
         DaTheme = 0;
     }
-
+    UpdateUI();
 });
 
 
@@ -59,7 +74,7 @@ async function startVisualizer(){
     }
     catch(err){
         console.error("Audio capture failed:", err);
-        document.getElementById("Start").innerText = "capture denied - try again";
+        document.getElementById("Start").classList.add("playing-mode");
     }
 }
 
