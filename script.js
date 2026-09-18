@@ -5,10 +5,25 @@ const analysier = DaAudio.createAnalyser();
 analysier.fftSize = 512;
 analysier.smoothingTimeConstant = 0.85;
 const AudioData = new Uint8Array(analysier.frequencyBinCount)
+const colors = [{top:"#00ffcc",mid:"#0044ff", center:"#020205", shadow:"#00ffcc"},
+    {top:"#ff00aa",mid:"#7a00ff", center:"#00ffff", shadow:"#00ffff"},
+    {top:"#ff3300",mid:"#ff9900", center:"#00ffff", shadow:"#ff3300"},
+    {top:"#ff0000",mid:"#00ff00", center:"#0000ff", shadow:"#ff00ff"},
+    {top:"#4b0032",mid:"#110022", center:"#000000", shadow:"#4b0082"},
+];
+let DaTheme = 1;
+window.addEventListener("keydown",(event)=> {
+    if (event.key==="1") DaTheme = 0;
+    if (event.key==="2") DaTheme = 1;
+    if (event.key==="3") DaTheme = 2;
+    if (event.key==="4") DaTheme = 3;
+    if (event.key==="5") DaTheme = 4;
+});
+
 
 let notes = 64;
 let CenterX,CenterY;
-let MaxHeight = 350;
+let MaxHeight = 250;
 function Size(){
     DaCanvas.width = window.innerWidth;
     DaCanvas.height = window.innerHeight;
@@ -27,7 +42,6 @@ async function startVisualizer(){
         if (DaAudio.state === "suspended"){
             DaAudio.resume();
         }
-        document.documentElement.requestFullscreen();
         document.getElementById("UILayer").classList.add("hidden");
         MovingOnes();
     }
@@ -47,13 +61,17 @@ function Bar(){
     let sliceWidth = DaCanvas.width / notes;
     let barWidth = sliceWidth *0.6;
 
-    let colorGradient = DaBrush.createLinearGradient(0,barbase-MaxHeight,0,barbase + MaxHeight);
-    colorGradient.addColorStop(0.5,"#1db954");
-    colorGradient.addColorStop(0,"#0e5c2a");
-    colorGradient.addColorStop(1,"#1db954");
+    let Theme = colors[DaTheme];
+    let colorGradient = DaBrush.createLinearGradient(0,barbase-MaxHeight,0,barbase +MaxHeight);
+    colorGradient.addColorStop(0,Theme.edge);
+    colorGradient.addColorStop(0.25,Theme.mid);
+    colorGradient.addColorStop(0.5,Theme.center);
+    colorGradient.addColorStop(0.75,Theme.mid);
+    colorGradient.addColorStop(1,Theme.edge);
+
     DaBrush.fillStyle = colorGradient;
     DaBrush.shadowBlur = 15;
-    DaBrush.shadowColor = "#1db954";
+    DaBrush.shadowColor = Theme.shadow;
 
     for(let _=0;_<notes;_++){
 
