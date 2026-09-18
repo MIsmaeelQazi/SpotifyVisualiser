@@ -5,11 +5,12 @@ const analysier = DaAudio.createAnalyser();
 analysier.fftSize = 512;
 analysier.smoothingTimeConstant = 0.85;
 const AudioData = new Uint8Array(analysier.frequencyBinCount)
-const colors = [{top:"#00fa9a",mid:"#008b8b", center:"#01151a", shadow:"#008b8b"},
-    {top:"#ff66cc",mid:"#5d3fd3", center:"#09001a", shadow:"#5d3fd3"},
-    {top:"#ff4500",mid:"#104e8b", center:"#000510", shadow:"#104e8b"},
-    {top:"#ff7f50",mid:"#48d1cc", center:"#191970", shadow:"#48d1cc"},
-    {top:"#4b0032",mid:"#110022", center:"#000000", shadow:"#4b0082"},
+const colors = [
+    { topEdge: "#ff003c", topMid: "#ff5e00", center: "#0a0005", bottomMid: "#ff00aa", bottomEdge: "#00ffff", shadow: "#ff00aa" },
+    { topEdge: "#00ff33", topMid: "#ffcc00", center: "#050a05", bottomMid: "#6600ff", bottomEdge: "#00ffff", shadow: "#00ff33" },
+    { topEdge: "#ff4500", topMid: "#ff9900", center: "#000510", bottomMid: "#104e8b", bottomEdge: "#00ffff", shadow: "#104e8b" },
+    { topEdge: "#00d4ff", topMid: "#0055ff", center: "#000510", bottomMid: "#5d3fd3", bottomEdge: "#aaff00", shadow: "#0055ff" },
+    { topEdge: "#4b0032", topMid: "#110022", center: "#000000", bottomMid: "#110022", bottomEdge: "#4b0032", shadow: "#4b0082" }
 ];
 let DaTheme = 1;
 window.addEventListener("keydown",(event)=> {
@@ -31,7 +32,7 @@ function Size(){
     CenterY = DaCanvas.height/2;
 
     MaxHeight = DaCanvas.height*0.45;
-    notes = Math.min(150,Math.floor(DaCanvas.width/25));
+    notes = Math.min(256,Math.floor(DaCanvas.width/10));
 }
 
 Size();
@@ -67,11 +68,11 @@ function Bar(){
 
     let Theme = colors[DaTheme];
     let colorGradient = DaBrush.createLinearGradient(0,barbase-MaxHeight,0,barbase +MaxHeight);
-    colorGradient.addColorStop(0,Theme.top);
-    colorGradient.addColorStop(0.25,Theme.mid);
+    colorGradient.addColorStop(0,Theme.topEdge);
+    colorGradient.addColorStop(0.25,Theme.topMid);
     colorGradient.addColorStop(0.5,Theme.center);
-    colorGradient.addColorStop(0.75,Theme.mid);
-    colorGradient.addColorStop(1,Theme.top);
+    colorGradient.addColorStop(0.75,Theme.bottomMid);
+    colorGradient.addColorStop(1,Theme.bottomEdge);
 
     DaBrush.fillStyle = colorGradient;
     DaBrush.shadowBlur = 4;
