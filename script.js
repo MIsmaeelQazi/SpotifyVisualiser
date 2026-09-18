@@ -3,7 +3,7 @@ const DaBrush = DaCanvas.getContext("2d");
 const DaAudio = new (window.AudioContext || window.webkitAudioContext)();
 const analysier = DaAudio.createAnalyser();
 analysier.fftSize = 256;
-
+const AudioData = new Uint8Array(analysier.frequencyBinCount)
 
 let notes = 60;
 let CenterX,CenterY;
@@ -14,6 +14,7 @@ function Size(){
     CenterX = DaCanvas.width/2;
     CenterY = DaCanvas.height/2;
 }
+
 Size();
 window.addEventListener("resize",Size);
 
@@ -55,7 +56,3 @@ function MovingOnes(){
     requestAnimationFrame(MovingOnes);
     
 }
-
-
-
-MovingOnes();
