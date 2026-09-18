@@ -3,7 +3,7 @@ const DaBrush = DaCanvas.getContext("2d");
 const DaAudio = new (window.AudioContext || window.webkitAudioContext)();
 const analysier = DaAudio.createAnalyser();
 analysier.fftSize = 256;
-anayliser.smoothingTimeConstant = 0.85;
+anaylsier.smoothingTimeConstant = 0.85;
 const AudioData = new Uint8Array(analysier.frequencyBinCount)
 
 let notes = 60;
