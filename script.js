@@ -2,13 +2,13 @@ const DaCanvas = document.getElementById("Bars");
 const DaBrush = DaCanvas.getContext("2d");
 const DaAudio = new (window.AudioContext || window.webkitAudioContext)();
 const analysier = DaAudio.createAnalyser();
-analysier.fftSize = 256;
+analysier.fftSize = 512;
 analysier.smoothingTimeConstant = 0.85;
 const AudioData = new Uint8Array(analysier.frequencyBinCount)
 
-let notes = 60;
+let notes = 64;
 let CenterX,CenterY;
-let MaxHeight = 400;
+let MaxHeight = 350;
 function Size(){
     DaCanvas.width = window.innerWidth;
     DaCanvas.height = window.innerHeight;
@@ -43,7 +43,9 @@ function Bar(){
     DaBrush.fillRect(0,0,DaCanvas.width, DaCanvas.height);
     analysier.getByteFrequencyData(AudioData);
     let barbase = DaCanvas.height - 100;
-    let barWidth = (DaCanvas.width/notes)-5;
+
+    let sliceWidth = DaCanvas.width / notes;
+    let barWidth = sliceWidth *0.6;
 
     let colorGradient = DaBrush.createLinearGradient(0,barbase,0,barbase - MaxHeight);
     colorGradient.addColorStop(0,"#0e5c2a");
@@ -53,10 +55,14 @@ function Bar(){
     DaBrush.shadowColor = "#1db954";
 
     for(let _=0;_<notes;_++){
-        let x = (DaCanvas.width/notes)*_;
+
+        let x = (sliceWidth*_) +(sliceWidth*0.2);
         let Freq = AudioData[_]/255;
 
-        let Height =Math.pow(Freq,1.2) *MaxHeight;
+        let FreqMultiplier = 1 +(_/notes)*1.8;
+        if (_ < 5) FreqMultiplier = 0.7;
+
+        let Height =(Freq*MaxHeight)* FreqMultiplier;
         if (Height<2) Height =2;
         DaBrush.fillRect(x,barbase,barWidth,-Height)
         
