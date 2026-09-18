@@ -74,7 +74,7 @@ function Bar(){
     colorGradient.addColorStop(1,Theme.top);
 
     DaBrush.fillStyle = colorGradient;
-    DaBrush.shadowBlur = 15;
+    DaBrush.shadowBlur = 4;
     DaBrush.shadowColor = Theme.shadow;
 
     for(let _=0;_<notes;_++){
