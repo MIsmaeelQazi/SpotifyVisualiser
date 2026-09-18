@@ -5,10 +5,10 @@ const analysier = DaAudio.createAnalyser();
 analysier.fftSize = 512;
 analysier.smoothingTimeConstant = 0.85;
 const AudioData = new Uint8Array(analysier.frequencyBinCount)
-const colors = [{top:"#00ffcc",mid:"#0044ff", center:"#020205", shadow:"#00ffcc"},
-    {top:"#ff00aa",mid:"#7a00ff", center:"#00ffff", shadow:"#00ffff"},
-    {top:"#ff3300",mid:"#ff9900", center:"#00ffff", shadow:"#ff3300"},
-    {top:"#ff0000",mid:"#00ff00", center:"#0000ff", shadow:"#ff00ff"},
+const colors = [{top:"#00fa9a",mid:"#008b8b", center:"#01151a", shadow:"#008b8b"},
+    {top:"#ff66cc",mid:"#5d3fd3", center:"#09001a", shadow:"#5d3fd3"},
+    {top:"#ff4500",mid:"#104e8b", center:"#000510", shadow:"#104e8b"},
+    {top:"#ff7f50",mid:"#48d1cc", center:"#191970", shadow:"#48d1cc"},
     {top:"#4b0032",mid:"#110022", center:"#000000", shadow:"#4b0082"},
 ];
 let DaTheme = 1;
