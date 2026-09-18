@@ -1,21 +1,13 @@
 const DaCanvas = document.getElementById("Bars");
 const DaBrush = DaCanvas.getContext("2d");
-const Muzic = document.getElementById("Muzic")
 const DaAudio = new (window.AudioContext || window.webkitAudioContext)();
 const analysier = DaAudio.createAnalyser();
-const Source = DaAudio.createMediaElementSource(Muzic);
+analysier.fftSize = 256;
 
 
-Source.connect(analysier);
-analysier.connect(DaAudio.destination);
-analysier.fftSize = 128;
-const AudioData = new Uint8Array(analysier.frequencyBinCount);
-
-
-let notes = 50;
-let CenterX = DaCanvas.width/2;
-let CenterY = DaCanvas.height/2;
-let MaxHeight = 300;
+let notes = 60;
+let CenterX,CenterY;
+let MaxHeight = 400;
 function Size(){
     DaCanvas.width = window.innerWidth;
     DaCanvas.height = window.innerHeight;
@@ -24,42 +16,46 @@ function Size(){
 }
 Size();
 window.addEventListener("resize",Size);
-function Bar(){
-    DaBrush.clearRect(0,0,DaCanvas.width,DaCanvas.height);
-    DaBrush.fillStyle = "#1db954";
-    analysier.getByteFrequencyData(AudioData);
-    let barbase = CenterY + 200;
-    for(let _=0;_<notes;_++){
-        let x = (DaCanvas.width/notes)*_;
-        let Freq = AudioData[_]/255;
-        let Height = Freq *MaxHeight;
-        DaBrush.fillRect(x,barbase,5,-Height)
-        
+
+async function startVisualizer(){
+    try {
+        const stream = await navigator.mediaDevices.getDisplayMedia({video:true,audio:true});
+        const source = DaAudio.createMediaStreamSource(stream);
+        source.connect(analysier);
+        if (DaAudio.state === "suspended"){
+            DaAudio.resume();
+        }
+        document.getElementById("UILayer").classList.add("hidden");
+        MovingOnes();
+    }
+    catch(err){
+        console.error("Audio capture failed:", err);
+        document.getElementsById("Start".innerText = "capture denied - try again")
     }
 }
 
 
-Bar()
+function Bar(){
+    DaBrush.clearRect(0,0,DaCanvas.width,DaCanvas.height);
+    DaBrush.fillStyle = "#1db954";
+    analysier.getByteFrequencyData(AudioData);
+    let barbase = DaCanvas.height - 100;
+    let barWidth = (DaCanvas.width/notes)-2;
+    for(let _=0;_<notes;_++){
+        let x = (DaCanvas.width/notes)*_;
+        let Freq = AudioData[_]/255;
+        let Height = Freq *MaxHeight;
+        DaBrush.fillRect(x,barbase,barWidth,-Height)
+        
+    }
+}
+
 function MovingOnes(){
     Bar();
     requestAnimationFrame(MovingOnes);
     
 }
 
-function togglePlayPause(){
-    if (DaAudio.state === "suspended"){
-        DaAudio.resume();
-    }
-    if (Muzic.paused){
-        Muzic.play();
-        document.getElementById("PlayPause").innerText = "pause";
-    }
-    else{
-        Muzic.pause();
-        document.getElementById("PlayPause").innerText = "play"
-    }
 
-
-}
 
 MovingOnes();
