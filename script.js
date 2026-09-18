@@ -27,10 +27,10 @@ function Starry(){
         stars.push({
             x:Math.random() * window.innerWidth,
             y:Math.random() * window.innerHeight,
-            vx: (Math.random() - 0.5)* 1.5,
-            vy:(Math.random()- 0.5) * 1.5,
-            size:Math.random() * 2 +1,
-            opacity:Math.random() * 0.4 +0.1
+            vx: (Math.random() - 0.5)* 0.5,
+            vy:(Math.random()- 0.5) * 0.5,
+            size:Math.random() * 1 +0.2,
+            opacity:Math.random() * 0.2 +0.05
         });
     }
 }
@@ -132,7 +132,7 @@ function Bar(){
 
     });
     DaBrush.opacity = 1;
-    
+
 
 
 
