@@ -50,7 +50,7 @@ function Bar(){
     let colorGradient = DaBrush.createLinearGradient(0,barbase-MaxHeight,0,barbase + MaxHeight);
     colorGradient.addColorStop(0.5,"#1db954");
     colorGradient.addColorStop(0,"#0e5c2a");
-    colorGradient.addColorStop(0.5,"#1db954");
+    colorGradient.addColorStop(1,"#1db954");
     DaBrush.fillStyle = colorGradient;
     DaBrush.shadowBlur = 15;
     DaBrush.shadowColor = "#1db954";
