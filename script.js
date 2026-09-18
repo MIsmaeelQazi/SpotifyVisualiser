@@ -21,8 +21,8 @@ window.addEventListener("keydown",(event)=> {
     if (event.key==="ArrowRight") DaTheme += 1;
     if (event.key==="ArrowLeft") DaTheme -= 1;
     if (DaTheme < 0){
-        DaTheme = length(colors);}
-    if (DaTheme >= length(colors)){
+        DaTheme = colors.length -1;}
+    if (DaTheme >= colors.length){
         DaTheme = 0;
     }
 
@@ -65,8 +65,7 @@ async function startVisualizer(){
 
 
 function Bar(){
-    DaBrush.fillStyle = "rgba(0,0,0,0.25)";
-    DaBrush.fillRect(0,0,DaCanvas.width, DaCanvas.height);
+    DaBrush.clearRect(0,0,DaCanvas.width,DaCanvas.height);
     analysier.getByteFrequencyData(AudioData);
     let barbase = DaCanvas.height/2;
 
