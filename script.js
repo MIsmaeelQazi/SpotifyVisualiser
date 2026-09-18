@@ -66,15 +66,17 @@ async function startVisualizer(){
             DaAudio.resume();
         }
         const stream = await navigator.mediaDevices.getDisplayMedia({video:true,audio:true});
+        stream.getVideoTracks()[0].stop();
         const source = DaAudio.createMediaStreamSource(stream);
         source.connect(analysier);
         
-        document.getElementById("UILayer").classList.add("hidden");
+
+        document.getElementById("Start").classList.add("playing-mode");
         MovingOnes();
     }
     catch(err){
         console.error("Audio capture failed:", err);
-        document.getElementById("Start").classList.add("playing-mode");
+        document.getElementById("Start").classList.add("CAPTURE DENIED - TRY AGAIN");
     }
 }
 
