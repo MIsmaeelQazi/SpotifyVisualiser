@@ -17,16 +17,40 @@ const colors = [
     { name: "PURE AMBIENT", bg: "radial-gradient(circle at center, #05001a 0%, #000000 100%)", topEdge: "#6600ff", topMid: "#220044", center: "#000000", bottomMid: "#220044", bottomEdge: "#6600ff", shadow: "#220044" }];
 
 
-    DaTheme = 0;
+let DaTheme = 0;
+let stars = [];
+const NoOfStars = 120;
+
+function Starry(){
+    particles = [];
+    for(let _ = 0; _ < NoOfStars;_++){
+        stars.push({
+            x:Math.random() * window.innerWidth,
+            y:Math.random() * window.innerHeight,
+            vx: (Math.random() - 0.5)* 1.5,
+            vy:(Math.random()- 0.5) * 1.5,
+            size:Math.random() * 2 +1,
+            opacity:Math.random() * 0.4 +0.1
+        });
+    }
+}
+Starry();
+
+
 function UpdateUI(){
     let Theme = colors[DaTheme]
     document.body.style.background = Theme.bg;
     const StartButton = document.getElementById("Start");
-    StartButton.innerText = "START:" + Theme.name;
+    if (StartButton.classList.contains("playing-mode")){
+        StartButton.innerText =Theme.name;
+
+    }
+    else{
+        StartButton.innerText = "START:" +Theme.name;
+    }
     StartButton.style.borderColor = Theme.shadow;
     StartButton.style.color = Theme.shadow;
     StartButton.style.boxShadow = `0 0 15px ${Theme.shadow}40, inset 0 0 10px ${Theme.shadow}20`;
-    StartButton.setAttribute("data-theme",Theme.name);
 }
 UpdateUI();
 
@@ -55,6 +79,7 @@ function Size(){
 
     MaxHeight = DaCanvas.height*0.45;
     notes = Math.min(256,Math.floor(DaCanvas.width/10));
+    Starry();
 }
 
 Size();
@@ -85,11 +110,37 @@ function Bar(){
     DaBrush.clearRect(0,0,DaCanvas.width,DaCanvas.height);
     analysier.getByteFrequencyData(AudioData);
     let barbase = DaCanvas.height/2;
+    let Theme = colors[DaTheme];
+
+    let Bass = (AudioData[0]+AudioData[1]+AudioData[2]+AudioData[3]+AudioData[4])/5/255;
+    DaBrush.fillStyle = Theme.shadow;
+    stars.forEach(p =>{
+        p.x+= p.vx * (1 +Bass*10);
+        p.y += p .vy * (1 +Bass*10);
+
+        if (p.x <0) p.x= DaCanvas.width;
+        if (p.x>DaCanvas.width) p.x = 0;
+        if(p.y < 0) p.y = DaCanvas.height;
+        if(p.y > DaCanvas.height) p.y = 0;
+
+        DaBrush.beginPath();
+        DaBrush.arc(p.x,p.y,p.size,0,Math.PI * 2);
+
+        DaBrush.arc(p.x,p.y,p.size,0,Math.PI*2);
+        DaBrush.opacity = Math.min(1,p.opacity + (Bass*0.8));
+        DaBrush.fill();
+
+    });
+    DaBrush.opacity = 1;
+    
+
+
+
 
     let sliceWidth = DaCanvas.width / notes;
     let barWidth = sliceWidth *0.6;
 
-    let Theme = colors[DaTheme];
+    
     let colorGradient = DaBrush.createLinearGradient(0,barbase-MaxHeight,0,barbase +MaxHeight);
     colorGradient.addColorStop(0,Theme.topEdge);
     colorGradient.addColorStop(0.4,Theme.topMid);
