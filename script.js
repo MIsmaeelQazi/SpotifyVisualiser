@@ -3,7 +3,7 @@ const DaBrush = DaCanvas.getContext("2d");
 const DaAudio = new (window.AudioContext || window.webkitAudioContext)();
 const analysier = DaAudio.createAnalyser();
 analysier.fftSize = 256;
-anaylsier.smoothingTimeConstant = 0.85;
+analysier.smoothingTimeConstant = 0.85;
 const AudioData = new Uint8Array(analysier.frequencyBinCount)
 
 let notes = 60;
@@ -32,13 +32,13 @@ async function startVisualizer(){
     }
     catch(err){
         console.error("Audio capture failed:", err);
-        document.getElementsById("Start").innerText = "capture denied - try again";
+        document.getElementById("Start").innerText = "capture denied - try again";
     }
 }
 
 
 function Bar(){
-    DaBrush.fillStyle = "rgba(0,0,0,0.25";
+    DaBrush.fillStyle = "rgba(0,0,0,0.25)";
     DaBrush.fillRect(0,0,DaCanvas.width, DaCanvas.height);
     analysier.getByteFrequencyData(AudioData);
     let barbase = DaCanvas.height - 100;
