@@ -27,6 +27,7 @@ async function startVisualizer(){
         if (DaAudio.state === "suspended"){
             DaAudio.resume();
         }
+        document.documentElement.requestFullscreen();
         document.getElementById("UILayer").classList.add("hidden");
         MovingOnes();
     }
