@@ -42,14 +42,15 @@ function Bar(){
     DaBrush.fillStyle = "rgba(0,0,0,0.25)";
     DaBrush.fillRect(0,0,DaCanvas.width, DaCanvas.height);
     analysier.getByteFrequencyData(AudioData);
-    let barbase = DaCanvas.height - 100;
+    let barbase = DaCanvas.height/2;
 
     let sliceWidth = DaCanvas.width / notes;
     let barWidth = sliceWidth *0.6;
 
-    let colorGradient = DaBrush.createLinearGradient(0,barbase,0,barbase - MaxHeight);
+    let colorGradient = DaBrush.createLinearGradient(0,barbase-MaxHeight,0,barbase + MaxHeight);
+    colorGradient.addColorStop(0.5,"#1db954");
     colorGradient.addColorStop(0,"#0e5c2a");
-    colorGradient.addColorStop(1,"#1db954");
+    colorGradient.addColorStop(0.5,"#1db954");
     DaBrush.fillStyle = colorGradient;
     DaBrush.shadowBlur = 15;
     DaBrush.shadowColor = "#1db954";
@@ -59,12 +60,13 @@ function Bar(){
         let x = (sliceWidth*_) +(sliceWidth*0.2);
         let Freq = AudioData[_]/255;
 
-        let FreqMultiplier = 1 +(_/notes)*1.8;
-        if (_ < 5) FreqMultiplier = 0.7;
+        let FreqMultiplier = 1 +(_/notes)*0.8;
+        if (_ < 5) FreqMultiplier = 0.8;
 
-        let Height =(Freq*MaxHeight)* FreqMultiplier;
+        let Height =Math.pow(Freq,1.4)*MaxHeight* FreqMultiplier;
         if (Height<2) Height =2;
         DaBrush.fillRect(x,barbase,barWidth,-Height)
+        DaBrush.fillRect(x,barbase,barWidth,Height)
         
     }
     DaBrush.shadowBlur = 0;
@@ -75,3 +77,4 @@ function MovingOnes(){
     requestAnimationFrame(MovingOnes);
     
 }
+
