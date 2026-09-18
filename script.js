@@ -97,6 +97,7 @@ async function startVisualizer(){
         
 
         document.getElementById("Start").classList.add("playing-mode");
+        UpdateUI();
         MovingOnes();
     }
     catch(err){
