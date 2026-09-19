@@ -76,10 +76,10 @@ function UpdateUI(){
     let modeText = Mode ==="HexCore"? "(Hex-Core)":"";
 
     if (StartButton.classList.contains("playing-mode")){
-        StartButton.innerText = Theme.name + modeText;
+        StartButton.innerText = Theme.name;
     }
     else{
-        StartButton.innerText = "START: "+ Theme.name + modeText;
+        StartButton.innerText = "START: "+ Theme.name;
     }
     StartButton.style.background = "rgba(5, 5, 10, 0.6)"; 
     StartButton.style.borderColor = Theme.shadow;
