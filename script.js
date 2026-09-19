@@ -225,7 +225,7 @@ function Bar(){
             DaBrush.save();
             let hexGradient = DaBrush.createLinearGradient(0,hexRadius,0,hexRadius+ MaxHeight);
             hexGradient.addColorStop(0,Theme.center);
-            hexGradient.addColorStop(0.3matchMedia,Theme.topMid);
+            hexGradient.addColorStop(0.3,Theme.topMid);
             hexGradient.addColorStop(1,Theme.topEdge);
             DaBrush.fillStyle = hexGradient;
             DaBrush.fillRect(-barWidth/2,hexRadius,barWidth,height);
