@@ -76,19 +76,16 @@ function UpdateUI(){
     let modeText = Mode ==="HexCore"? "(Hex-Core)":"";
 
     if (StartButton.classList.contains("playing-mode")){
-        StartButton.style.background = "transparent";
-        StartButton.style.borderColor = "transparent";
-        StartButton.style.boxShadow = "none";
-        StartButton.style.textShadow = `0 0 20px ${Theme.shadow}, 0 0 10px ${Theme.shadow}`;
+        StartButton.innerText = Theme.name + modeText;
     }
     else{
-        StartButton.innerText = "START: " + Theme.name + modeText;
-        StartButton.style.background = "rgba(5,5,10,0.6)";
-        StartButton.style.borderColor = Theme.shadow;
-        StartButton.style.boxShadow = `0 0 15px ${Theme.shadow}40, inset 0 0 10px ${Theme.shadow}20`;
-        StartButton.style.textShadow = "none";
+        StartButton.innerText = "START: "+ Theme.name + modeText;
     }
+    StartButton.style.background = "rgba(5, 5, 10, 0.6)"; 
+    StartButton.style.borderColor = Theme.shadow;
     StartButton.style.color = Theme.shadow;
+    StartButton.style.textShadow = "none";
+    StartButton.style.boxShadow = `0 0 15px ${Theme.shadow}40, inset 0 0 10px ${Theme.shadow}20`;
 }
 UpdateUI();
 
