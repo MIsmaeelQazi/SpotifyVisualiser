@@ -1,3 +1,5 @@
+// Declaration 
+
 const DaCanvas = document.getElementById("Bars");
 const DaBrush = DaCanvas.getContext("2d");
 const DaAudio = new (window.AudioContext || window.webkitAudioContext)();
@@ -23,10 +25,15 @@ const colors = [
     { name: "JAYCE / VI", bg: "radial-gradient(circle at center, #000a1a 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#00ccff", center: "#000a1a", bottomMid: "#cc0000", bottomEdge: "#ffaa00", shadow: "#00ccff" }
 ];
 
+let notes;
+let CenterX,CenterY;
+let MaxHeight;
 let DaTheme = 0;
 let stars = [];
 const NoOfStars = 120;
 let Caps = new Array(256).fill(0)
+// this function is the background mainly 
+
 
 function Starry(){
     particles = [];
@@ -43,6 +50,24 @@ function Starry(){
 }
 Starry();
 
+
+
+// in case of resizing 
+function Size(){
+    DaCanvas.width = window.innerWidth;
+    DaCanvas.height = window.innerHeight;
+    CenterX = DaCanvas.width/2;
+    CenterY = DaCanvas.height/2;
+
+    MaxHeight = DaCanvas.height*0.45;
+    notes = Math.min(256,Math.floor(DaCanvas.width/10));
+    Starry();
+}
+
+Size();
+window.addEventListener("resize",Size);
+
+// to switch themes and modes  
 let Mode = "Bars"
 function UpdateUI(){
     let Theme = colors[DaTheme]
@@ -63,6 +88,7 @@ function UpdateUI(){
 UpdateUI();
 
 
+// just basic controls 
 window.addEventListener("keydown",(event)=> {
     
     if (event.key==="ArrowRight") DaTheme += 1;
@@ -78,24 +104,7 @@ window.addEventListener("keydown",(event)=> {
     UpdateUI();
 });
 
-
-let notes;
-let CenterX,CenterY;
-let MaxHeight;
-function Size(){
-    DaCanvas.width = window.innerWidth;
-    DaCanvas.height = window.innerHeight;
-    CenterX = DaCanvas.width/2;
-    CenterY = DaCanvas.height/2;
-
-    MaxHeight = DaCanvas.height*0.45;
-    notes = Math.min(256,Math.floor(DaCanvas.width/10));
-    Starry();
-}
-
-Size();
-window.addEventListener("resize",Size);
-
+// this visualizer uses comp audio using screen share with audio so in this it kills video and uses the audio
 async function startVisualizer(){
     try {
         if (DaAudio.state === "suspended"){
@@ -117,8 +126,8 @@ async function startVisualizer(){
     }
 }
 
-
-function Bar(){
+// this is the main function in this i draw everything using canvas  
+function DrawingEverything(){
     DaBrush.clearRect(0,0,DaCanvas.width,DaCanvas.height);
     analysier.getByteFrequencyData(AudioData);
     let barbase = DaCanvas.height/2;
@@ -229,10 +238,10 @@ function Bar(){
     }
     
 }
-
-function MovingOnes(){
-    Bar();
-    requestAnimationFrame(MovingOnes);
+// Animation
+function RunThisShi(){
+    DrawingEverything();
+    requestAnimationFrame(RunThisShi);
     
 }
 
