@@ -128,19 +128,6 @@ function Bar(){
     let Bass = (AudioData[0]+AudioData[1]+AudioData[2]+AudioData[3]+AudioData[4])/5/255;
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     DaBrush.fillStyle = Theme.shadow;
     stars.forEach(p =>{
         p.x+= p.vx * (1 +Bass*10);
@@ -154,11 +141,12 @@ function Bar(){
         DaBrush.beginPath();
         if (Mode === "HexCore"){
 
-            DaBrush.arc(p.x,p.size*12,0,Math.PI *2);
+            DaBrush.arc(p.x,p.y,p.size*12,0,Math.PI *2);
             DaBrush.fillStyle = Theme.topMid;
             DaBrush.globalAlpha = Math.min(0.2, (p.opacity*0.4) + (Bass*0.2));
             DaBrush.shadowBlur = 15;
             DaBrush.shadowColor = Theme.bottomMid;
+            DaBrush.fill();
 
         }
         else{
@@ -176,12 +164,14 @@ function Bar(){
     let glitchOffset = 0;
     if(Bass > 0.65){
         glitchOffset = (Math.random()-0.5)*(Bass*30);
+    }
     let hexRadius= 130;
     if (Mode === "HexCore"){
         DaBrush.beginPath();
         DaBrush.arc(CenterX +glitchOffset, CenterY +glitchOffset,hexRadius -5,0,Math.PI *2);
         DaBrush.fillStyle = Theme.center;
         DaBrush.shadowBlur = 20 + (Bass *80);
+        DaBrush.shadowColor = Theme.topMid;
         DaBrush.fill();
         DaBrush.shadowBlur = 0;
     }
@@ -223,14 +213,16 @@ function Bar(){
         else{
             let angle= _* ((Math.PI *2)/notes);
             DaBrush.save();
+            DaBrush.translate(centerX +glitchOffset,CenterY +glitchOffset);
+            DaBrush.rotate(angle);
             let hexGradient = DaBrush.createLinearGradient(0,hexRadius,0,hexRadius+ MaxHeight);
             hexGradient.addColorStop(0,Theme.center);
             hexGradient.addColorStop(0.3,Theme.topMid);
             hexGradient.addColorStop(1,Theme.topEdge);
             DaBrush.fillStyle = hexGradient;
-            DaBrush.fillRect(-barWidth/2,hexRadius,barWidth,height);
+            DaBrush.fillRect(-barWidth/2,hexRadius,barWidth,Height);
             DaBrush.fillStyle = Theme.topEdge;
-            DaBrush.fillRect(-barWidth /2, hexRadius +caps[_]+5,barWidth,4);
+            DaBrush.fillRect(-barWidth /2, hexRadius +Caps[_]+5,barWidth,4);
             DaBrush.restore();
 
         }
