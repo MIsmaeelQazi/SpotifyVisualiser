@@ -143,7 +143,7 @@ function Bar(){
 
             DaBrush.arc(p.x,p.y,p.size*12,0,Math.PI *2);
             DaBrush.fillStyle = Theme.topMid;
-            DaBrush.globalAlpha = Math.min(0.2, (p.opacity*0.4) + (Bass*0.2));
+            DaBrush.globalAlpha = Math.min(0.2, (p.globalAlpha*0.4) + (Bass*0.2));
             DaBrush.shadowBlur = 15;
             DaBrush.shadowColor = Theme.bottomMid;
             DaBrush.fill();
@@ -162,7 +162,7 @@ function Bar(){
     DaBrush.shadowBlur = 0;
 
     let glitchOffset = 0;
-    if(Bass > 0.65){
+    if(Bass > 0.88){
         glitchOffset = (Math.random()-0.5)*(Bass*30);
     }
     let hexRadius= 130;
@@ -213,7 +213,7 @@ function Bar(){
         else{
             let angle= _* ((Math.PI *2)/notes);
             DaBrush.save();
-            DaBrush.translate(centerX +glitchOffset,CenterY +glitchOffset);
+            DaBrush.translate(CenterX +glitchOffset,CenterY +glitchOffset);
             DaBrush.rotate(angle);
             let hexGradient = DaBrush.createLinearGradient(0,hexRadius,0,hexRadius+ MaxHeight);
             hexGradient.addColorStop(0,Theme.center);
