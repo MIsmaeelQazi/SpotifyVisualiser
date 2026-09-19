@@ -8,11 +8,11 @@ const AudioData = new Uint8Array(analysier.frequencyBinCount)
 const colors = [
     { name: "VI / JINX", bg: "radial-gradient(circle at center, #1a0010 0%, #000000 100%)", topEdge: "#ff3399", topMid: "#cc0066", center: "#050005", bottomMid: "#0088ff", bottomEdge: "#00e5ff", shadow: "#ff3399" },
     { name: "JAYCE / VIKTOR", bg: "radial-gradient(circle at center, #00101a 0%, #000000 100%)", topEdge: "#ffd700", topMid: "#4fc3f7", center: "#00050a", bottomMid: "#007a7a", bottomEdge: "#00ffcc", shadow: "#4fc3f7" },
-    { name: "EKKO / JINX", bg: "radial-gradient(circle at center, #001a0a 0%, #000000 100%)", topEdge: "#00ff88", topMid: "#00994d", center: "#001a0a", bottomMid: "#0088ff", bottomEdge: "#ff33cc", shadow: "#00cc66" },
+    { name: "EKKO / JINX", bg: "radial-gradient(circle at center, #001a0a 0%, #000000 100%)", topEdge: "#ffcc00", topMid: "#00cc66", center: "#001a0a", bottomMid: "#0088ff", bottomEdge: "#ff33cc", shadow: "#00cc66" },
     { name: "VANDER / SILCO", bg: "radial-gradient(circle at center, #1a0500 0%, #000000 100%)", topEdge: "#ff8800", topMid: "#cc4400", center: "#1a0500", bottomMid: "#4b0082", bottomEdge: "#00cccc", shadow: "#cc4400" },
     { name: "CAITLYN / VI", bg: "radial-gradient(circle at center, #05051a 0%, #000000 100%)", topEdge: "#cceeff", topMid: "#3388ff", center: "#05051a", bottomMid: "#cc0066", bottomEdge: "#ff3399", shadow: "#3388ff" },
     { name: "SEVIKA / VI", bg: "radial-gradient(circle at center, #0f001a 0%, #000000 100%)", topEdge: "#ffaa00", topMid: "#9900cc", center: "#0f001a", bottomMid: "#cc0066", bottomEdge: "#ff3399", shadow: "#9900cc" },
-    { name: "HEIMERDINGER / EKKO", bg: "radial-gradient(circle at center, #1a1500 0%, #000000 100%)", topEdge: "#ffcc00", topMid: "#4488ff", center: "#1a1500", bottomMid: "#00994d", bottomEdge: "#00ff88", shadow: "#ffcc00" },
+    { name: "HEIMERDINGER / EKKO", bg: "radial-gradient(circle at center, #1a1500 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#ffaa00", center: "#1a1500", bottomMid: "#00cc66", bottomEdge: "#ffcc00", shadow: "#ffaa00" },
     { name: "SINGED / VIKTOR", bg: "radial-gradient(circle at center, #0a1a00 0%, #000000 100%)", topEdge: "#aaff00", topMid: "#558800", center: "#0a1a00", bottomMid: "#007a7a", bottomEdge: "#00ffff", shadow: "#558800" },
     { name: "VANDER / VI", bg: "radial-gradient(circle at center, #1a0a00 0%, #000000 100%)", topEdge: "#ff8800", topMid: "#cc4400", center: "#1a0a05", bottomMid: "#cc0066", bottomEdge: "#ff3399", shadow: "#ff6633" },
     { name: "SILCO / JINX", bg: "radial-gradient(circle at center, #0f001a 0%, #000000 100%)", topEdge: "#00cccc", topMid: "#4b0082", center: "#05001a", bottomMid: "#0088ff", bottomEdge: "#ff33cc", shadow: "#4b0082" },
