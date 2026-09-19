@@ -30,7 +30,7 @@ function Starry(){
             vx: (Math.random() - 0.5)* 0.5,
             vy:(Math.random()- 0.5) * 0.5,
             size:Math.random() * 1 +0.2,
-            opacity:Math.random() * 0.2 +0.05
+            globalAlpha:Math.random() * 0.2 +0.05
         });
     }
 }
@@ -102,7 +102,7 @@ async function startVisualizer(){
     }
     catch(err){
         console.error("Audio capture failed:", err);
-        document.getElementById("Start").classList.add("CAPTURE DENIED - TRY AGAIN");
+        document.getElementById("Start").innerText ="CAPTURE DENIED - TRY AGAIN";
     }
 }
 
@@ -128,11 +128,11 @@ function Bar(){
         DaBrush.arc(p.x,p.y,p.size,0,Math.PI * 2);
 
         DaBrush.arc(p.x,p.y,p.size,0,Math.PI*2);
-        DaBrush.opacity = Math.min(1,p.opacity + (Bass*0.8));
+        DaBrush.globalAlpha = Math.min(1,p.globalAlpha + (Bass*0.8));
         DaBrush.fill();
 
     });
-    DaBrush.opacity = 1;
+    DaBrush.globalAlpha = 1;
 
 
 
