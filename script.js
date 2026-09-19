@@ -74,16 +74,21 @@ function UpdateUI(){
     document.body.style.background = Theme.bg;
     const StartButton = document.getElementById("Start");
     let modeText = Mode ==="HexCore"? "(Hex-Core)":"";
+
     if (StartButton.classList.contains("playing-mode")){
-        StartButton.innerText =Theme.name;
+        StartButton.style.background = "transparent";
+        StartButton.style.borderColor = "transparent";
+        StartButton.style.boxShadow = "none";
+        StartButton.style.textShadow = `0 0 20px ${Theme.shadow}, 0 0 10px ${Theme.shadow}`;
     }
     else{
-        StartButton.innerText = "START:" +Theme.name;
+        StartButton.innerText = "START: " + Theme.name + modeText;
+        StartButton.style.background = "rgba(5,5,10,0.6)";
+        StartButton.style.borderColor = Theme.shadow;
+        StartButton.style.boxShadow = `0 0 15px ${Theme.shadow}40, inset 0 0 10px ${Theme.shadow}20`;
+        StartButton.style.textShadow = "none";
     }
-
-    StartButton.style.borderColor = Theme.shadow;
     StartButton.style.color = Theme.shadow;
-    StartButton.style.boxShadow = `0 0 15px ${Theme.shadow}40, inset 0 0 10px ${Theme.shadow}20`;
 }
 UpdateUI();
 
@@ -202,9 +207,9 @@ function DrawingEverything(){
         let FreqMultiplier = 1 +(_/notes)*0.8;
         if (_ < 5) FreqMultiplier = 0.8;
         let Height =Math.pow(Freq,1.4)*MaxHeight* FreqMultiplier;
-        if (Height<2) Height =2;
+        if (Height<2) Height =0;
         if (Height >Caps[_]) Caps[_] = Height; else Caps[_] -= 3;
-        if(Caps[_]<2) Caps[_] = 2;
+        if(Caps[_]<2) Caps[_] = 0;
 
 
         if(Mode === "Straight"){
