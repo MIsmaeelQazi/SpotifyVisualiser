@@ -27,6 +27,7 @@ const colors = [
 let DaTheme = 0;
 let stars = [];
 const NoOfStars = 120;
+let Caps = new Array(256).fill(0)
 
 function Starry(){
     particles = [];
@@ -43,18 +44,19 @@ function Starry(){
 }
 Starry();
 
-
+let Mode = "Bars"
 function UpdateUI(){
     let Theme = colors[DaTheme]
     document.body.style.background = Theme.bg;
     const StartButton = document.getElementById("Start");
+    let modeText = Mode ==="HexCore"? "(Hex-Core)":"";
     if (StartButton.classList.contains("playing-mode")){
         StartButton.innerText =Theme.name;
-
     }
     else{
         StartButton.innerText = "START:" +Theme.name;
     }
+
     StartButton.style.borderColor = Theme.shadow;
     StartButton.style.color = Theme.shadow;
     StartButton.style.boxShadow = `0 0 15px ${Theme.shadow}40, inset 0 0 10px ${Theme.shadow}20`;
@@ -70,6 +72,9 @@ window.addEventListener("keydown",(event)=> {
         DaTheme = colors.length -1;}
     if (DaTheme >= colors.length){
         DaTheme = 0;
+    }
+    if (event.key === "ArrowUp" || event.key === "ArrowDown"){
+        Mode = (Mode ==="Bars")? "HexCore":"Bars";
     }
     UpdateUI();
 });
@@ -121,6 +126,21 @@ function Bar(){
     let Theme = colors[DaTheme];
 
     let Bass = (AudioData[0]+AudioData[1]+AudioData[2]+AudioData[3]+AudioData[4])/5/255;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     DaBrush.fillStyle = Theme.shadow;
     stars.forEach(p =>{
         p.x+= p.vx * (1 +Bass*10);
@@ -132,22 +152,44 @@ function Bar(){
         if(p.y > DaCanvas.height) p.y = 0;
 
         DaBrush.beginPath();
+        if (Mode === "HexCore"){
+
+            DaBrush.arc(p.x,p.size*12,0,Math.PI *2);
+            DaBrush.fillStyle = Theme.topMid;
+            DaBrush.globalAlpha = Math.min(0.2, (p.opacity*0.4) + (Bass*0.2));
+            DaBrush.shadowBlur = 15;
+            DaBrush.shadowColor = Theme.bottomMid;
+
+        }
+        else{
         DaBrush.arc(p.x,p.y,p.size,0,Math.PI * 2);
-
-        DaBrush.arc(p.x,p.y,p.size,0,Math.PI*2);
+        DaBrush.fillStyle = Theme.shadow;
         DaBrush.globalAlpha = Math.min(1,p.globalAlpha + (Bass*0.8));
+        DaBrush.shadowBlur = 0;
+        
         DaBrush.fill();
-
+        }
     });
     DaBrush.globalAlpha = 1;
+    DaBrush.shadowBlur = 0;
 
-
+    let glitchOffset = 0;
+    if(Bass > 0.65){
+        glitchOffset = (Math.random()-0.5)*(Bass*30);
+    let hexRadius= 130;
+    if (Mode === "HexCore"){
+        DaBrush.beginPath();
+        DaBrush.arc(CenterX +glitchOffset, CenterY +glitchOffset,hexRadius -5,0,Math.PI *2);
+        DaBrush.fillStyle = Theme.center;
+        DaBrush.shadowBlur = 20 + (Bass *80);
+        DaBrush.fill();
+        DaBrush.shadowBlur = 0;
+    }
 
 
 
     let sliceWidth = DaCanvas.width / notes;
-    let barWidth = sliceWidth *0.6;
-
+    let barWidth = Mode === "HexCore" ? ((Math.PI*2*hexRadius)/notes) *0.6:sliceWidth*0.6;
     
     let colorGradient = DaBrush.createLinearGradient(0,barbase-MaxHeight,0,barbase +MaxHeight);
     colorGradient.addColorStop(0,Theme.topEdge);
@@ -156,25 +198,45 @@ function Bar(){
     colorGradient.addColorStop(0.6,Theme.bottomMid);
     colorGradient.addColorStop(1,Theme.bottomEdge);
 
-    DaBrush.fillStyle = colorGradient;
-    DaBrush.shadowBlur = 4;
-    DaBrush.shadowColor = Theme.shadow;
-
     for(let _=0;_<notes;_++){
 
-        let x = (sliceWidth*_) +(sliceWidth*0.2);
         let Freq = AudioData[_]/255;
-
         let FreqMultiplier = 1 +(_/notes)*0.8;
         if (_ < 5) FreqMultiplier = 0.8;
-
         let Height =Math.pow(Freq,1.4)*MaxHeight* FreqMultiplier;
         if (Height<2) Height =2;
-        DaBrush.fillRect(x,barbase,barWidth,-Height)
-        DaBrush.fillRect(x,barbase,barWidth,Height)
+        if (Height >Caps[_]) Caps[_] = Height; else Caps[_] -= 3;
+        if(Caps[_]<2) Caps[_] = 2;
+
+
+        if(Mode === "Bars"){
+            let x = (sliceWidth*_) + (sliceWidth *0.2) + glitchOffset;
+            DaBrush.fillStyle = colorGradient;
+            DaBrush.fillRect(x,barbase,barWidth,-Height);
+            DaBrush.fillRect(x,barbase,barWidth,Height);
+            DaBrush.fillStyle = Theme.topEdge;
+            DaBrush.fillRect(x,barbase-Caps[_] -6, barWidth,3);
+            DaBrush.fillStyle = Theme.bottomEdge;
+            DaBrush.fillRect(x,barbase+Caps[_] +3, barWidth,3);
+        }
+
+        else{
+            let angle= _* ((Math.PI *2)/notes);
+            DaBrush.save();
+            let hexGradient = DaBrush.createLinearGradient(0,hexRadius,0,hexRadius+ MaxHeight);
+            hexGradient.addColorStop(0,Theme.center);
+            hexGradient.addColorStop(0.3matchMedia,Theme.topMid);
+            hexGradient.addColorStop(1,Theme.topEdge);
+            DaBrush.fillStyle = hexGradient;
+            DaBrush.fillRect(-barWidth/2,hexRadius,barWidth,height);
+            DaBrush.fillStyle = Theme.topEdge;
+            DaBrush.fillRect(-barWidth /2, hexRadius +caps[_]+5,barWidth,4);
+            DaBrush.restore();
+
+        }
         
     }
-    DaBrush.shadowBlur = 0;
+    
 }
 
 function MovingOnes(){
