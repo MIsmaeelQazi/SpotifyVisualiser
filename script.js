@@ -29,14 +29,13 @@ let notes;
 let CenterX,CenterY;
 let MaxHeight;
 let DaTheme = 0;
-let stars = [];
 const NoOfStars = 120;
 let Caps = new Array(256).fill(0)
 // this function is the background mainly 
 
 
 function Starry(){
-    particles = [];
+    let stars = [];
     for(let _ = 0; _ < NoOfStars;_++){
         stars.push({
             x:Math.random() * window.innerWidth,
@@ -68,7 +67,7 @@ Size();
 window.addEventListener("resize",Size);
 
 // to switch themes and modes  
-let Mode = "Bars"
+let Mode = "Straight"
 function UpdateUI(){
     let Theme = colors[DaTheme]
     document.body.style.background = Theme.bg;
@@ -99,7 +98,7 @@ window.addEventListener("keydown",(event)=> {
         DaTheme = 0;
     }
     if (event.key === "ArrowUp" || event.key === "ArrowDown"){
-        Mode = (Mode ==="Bars")? "HexCore":"Bars";
+        Mode = (Mode ==="Straight")? "HexCore":"Straight";
     }
     UpdateUI();
 });
@@ -118,7 +117,7 @@ async function startVisualizer(){
 
         document.getElementById("Start").classList.add("playing-mode");
         UpdateUI();
-        MovingOnes();
+        RunThisShi();
     }
     catch(err){
         console.error("Audio capture failed:", err);
@@ -207,7 +206,7 @@ function DrawingEverything(){
         if(Caps[_]<2) Caps[_] = 2;
 
 
-        if(Mode === "Bars"){
+        if(Mode === "Straight"){
             let x = (sliceWidth*_) + (sliceWidth *0.2) + glitchOffset;
             DaBrush.fillStyle = colorGradient;
             DaBrush.fillRect(x,barbase,barWidth,-Height);
@@ -244,4 +243,3 @@ function RunThisShi(){
     requestAnimationFrame(RunThisShi);
     
 }
-
