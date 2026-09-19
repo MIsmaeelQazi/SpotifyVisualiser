@@ -162,7 +162,7 @@ function Bar(){
     DaBrush.shadowBlur = 0;
 
     let glitchOffset = 0;
-    if(Bass > 0.95){
+    if(Bass > 0.92){
         glitchOffset = (Math.random()-0.5)*(Bass*30);
     }
     let hexRadius= 130;
