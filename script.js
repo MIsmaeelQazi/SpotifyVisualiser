@@ -6,16 +6,23 @@ analysier.fftSize = 512;
 analysier.smoothingTimeConstant = 0.85;
 const AudioData = new Uint8Array(analysier.frequencyBinCount)
 const colors = [
-    { name: "VI / JINX", bg: "radial-gradient(circle at center, #1a0005 0%, #000000 100%)", topEdge: "#ffcc00", topMid: "#cc0033", center: "#050000", bottomMid: "#0088ff", bottomEdge: "#ff00ff", shadow: "#0088ff" },
-    { name: "JAYCE / VIKTOR", bg: "radial-gradient(circle at center, #00051a 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#0055ff", center: "#000005", bottomMid: "#5d3fd3", bottomEdge: "#00ff00", shadow: "#5d3fd3" },
-    { name: "EKKO / JINX", bg: "radial-gradient(circle at center, #001a0a 0%, #000000 100%)", topEdge: "#ffcc00", topMid: "#00cc66", center: "#000500", bottomMid: "#0088ff", bottomEdge: "#aa00ff", shadow: "#00cc66" },
-    { name: "VANDER / SILCO", bg: "radial-gradient(circle at center, #1a0500 0%, #000000 100%)", topEdge: "#ff6600", topMid: "#8b0000", center: "#050000", bottomMid: "#003311", bottomEdge: "#ff0000", shadow: "#ff0000" },
-    { name: "CAITLYN / VI", bg: "radial-gradient(circle at center, #05051a 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#0033aa", center: "#000005", bottomMid: "#cc0033", bottomEdge: "#ff9900", shadow: "#0033aa" },
-    { name: "SEVIKA / VI", bg: "radial-gradient(circle at center, #0f001a 0%, #000000 100%)", topEdge: "#00ff00", topMid: "#5d3fd3", center: "#050005", bottomMid: "#cc0033", bottomEdge: "#ffcc00", shadow: "#5d3fd3" },
-    { name: "HEIMERDINGER / EKKO", bg: "radial-gradient(circle at center, #1a1500 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#ffaa00", center: "#050500", bottomMid: "#00cc66", bottomEdge: "#00ffcc", shadow: "#ffaa00" },
-    { name: "SINGED / VIKTOR", bg: "radial-gradient(circle at center, #0a1a00 0%, #000000 100%)", topEdge: "#aaff00", topMid: "#334400", center: "#000000", bottomMid: "#330066", bottomEdge: "#00ffff", shadow: "#330066" },
-    { name: "PURE AMBIENT", bg: "radial-gradient(circle at center, #05001a 0%, #000000 100%)", topEdge: "#6600ff", topMid: "#220044", center: "#000000", bottomMid: "#220044", bottomEdge: "#6600ff", shadow: "#220044" }];
-
+    { name: "VI / JINX", bg: "radial-gradient(circle at center, #1a0010 0%, #000000 100%)", topEdge: "#ff3399", topMid: "#cc0066", center: "#050005", bottomMid: "#0088ff", bottomEdge: "#00e5ff", shadow: "#ff3399" },
+    { name: "JAYCE / VIKTOR", bg: "radial-gradient(circle at center, #00101a 0%, #000000 100%)", topEdge: "#ffd700", topMid: "#4fc3f7", center: "#00050a", bottomMid: "#007a7a", bottomEdge: "#00ffcc", shadow: "#4fc3f7" },
+    { name: "EKKO / JINX", bg: "radial-gradient(circle at center, #001a0a 0%, #000000 100%)", topEdge: "#00ff88", topMid: "#00994d", center: "#001a0a", bottomMid: "#0088ff", bottomEdge: "#ff33cc", shadow: "#00cc66" },
+    { name: "VANDER / SILCO", bg: "radial-gradient(circle at center, #1a0500 0%, #000000 100%)", topEdge: "#ff8800", topMid: "#cc4400", center: "#1a0500", bottomMid: "#4b0082", bottomEdge: "#00cccc", shadow: "#cc4400" },
+    { name: "CAITLYN / VI", bg: "radial-gradient(circle at center, #05051a 0%, #000000 100%)", topEdge: "#cceeff", topMid: "#3388ff", center: "#05051a", bottomMid: "#cc0066", bottomEdge: "#ff3399", shadow: "#3388ff" },
+    { name: "SEVIKA / VI", bg: "radial-gradient(circle at center, #0f001a 0%, #000000 100%)", topEdge: "#ffaa00", topMid: "#9900cc", center: "#0f001a", bottomMid: "#cc0066", bottomEdge: "#ff3399", shadow: "#9900cc" },
+    { name: "HEIMERDINGER / EKKO", bg: "radial-gradient(circle at center, #1a1500 0%, #000000 100%)", topEdge: "#ffcc00", topMid: "#4488ff", center: "#1a1500", bottomMid: "#00994d", bottomEdge: "#00ff88", shadow: "#ffcc00" },
+    { name: "SINGED / VIKTOR", bg: "radial-gradient(circle at center, #0a1a00 0%, #000000 100%)", topEdge: "#aaff00", topMid: "#558800", center: "#0a1a00", bottomMid: "#007a7a", bottomEdge: "#00ffff", shadow: "#558800" },
+    { name: "VANDER / VI", bg: "radial-gradient(circle at center, #1a0a00 0%, #000000 100%)", topEdge: "#ff8800", topMid: "#cc4400", center: "#1a0a05", bottomMid: "#cc0066", bottomEdge: "#ff3399", shadow: "#ff6633" },
+    { name: "SILCO / JINX", bg: "radial-gradient(circle at center, #0f001a 0%, #000000 100%)", topEdge: "#00cccc", topMid: "#4b0082", center: "#05001a", bottomMid: "#0088ff", bottomEdge: "#ff33cc", shadow: "#4b0082" },
+    { name: "MEL / AMBESSA", bg: "radial-gradient(circle at center, #1a0005 0%, #000000 100%)", topEdge: "#ffcc00", topMid: "#cc0033", center: "#1a0005", bottomMid: "#660022", bottomEdge: "#990033", shadow: "#cc0033" },
+    { name: "CAITLYN / CASSANDRA", bg: "radial-gradient(circle at center, #05050f 0%, #000000 100%)", topEdge: "#cceeff", topMid: "#3388ff", center: "#05050a", bottomMid: "#336699", bottomEdge: "#ffd700", shadow: "#3388ff" },
+    { name: "ISHA / JINX", bg: "radial-gradient(circle at center, #0f0015 0%, #000000 100%)", topEdge: "#ffccee", topMid: "#cc99ff", center: "#0f0015", bottomMid: "#0088ff", bottomEdge: "#ff33cc", shadow: "#cc99ff" },
+    { name: "JINX / CAITLYN", bg: "radial-gradient(circle at center, #05051a 0%, #000000 100%)", topEdge: "#ff33cc", topMid: "#0088ff", center: "#05051a", bottomMid: "#336699", bottomEdge: "#cceeff", shadow: "#0088ff" },
+    { name: "JAYCE / VI", bg: "radial-gradient(circle at center, #05050a 0%, #000000 100%)", topEdge: "#ffd700", topMid: "#4fc3f7", center: "#05050a", bottomMid: "#cc0066", bottomEdge: "#ff3399", shadow: "#4fc3f7" },
+    { name: "PURE AMBIENT", bg: "radial-gradient(circle at center, #05001a 0%, #000000 100%)", topEdge: "#6600ff", topMid: "#220044", center: "#000000", bottomMid: "#220044", bottomEdge: "#6600ff", shadow: "#220044" }
+];
 
 let DaTheme = 0;
 let stars = [];
