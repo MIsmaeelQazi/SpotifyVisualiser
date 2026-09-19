@@ -31,11 +31,12 @@ let MaxHeight;
 let DaTheme = 0;
 const NoOfStars = 120;
 let Caps = new Array(256).fill(0)
+let stars
 // this function is the background mainly 
 
 
 function Starry(){
-    let stars = [];
+    stars = [];
     for(let _ = 0; _ < NoOfStars;_++){
         stars.push({
             x:Math.random() * window.innerWidth,
@@ -107,7 +108,7 @@ window.addEventListener("keydown",(event)=> {
 async function startVisualizer(){
     try {
         if (DaAudio.state === "suspended"){
-            DaAudio.resume();
+            await DaAudio.resume();
         }
         const stream = await navigator.mediaDevices.getDisplayMedia({video:true,audio:true});
         stream.getVideoTracks()[0].stop();
