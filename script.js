@@ -81,19 +81,25 @@ function UpdateUI(){
     }
 
     StartButton.innerHTML = `<span style="
-    background:linear-gradient(to right, ${Theme.topEdge},${Theme.bottomEdge});
+    background:linear-gradient(to right, ${Theme.topEdge}, ${Theme.shadow}, ${Theme.bottomEdge}, ${Theme.shadow}, ${Theme.topEdge});
+    background-size-size:200% auto;
     -webkit-background-clip:text;
     =webkit-text-fill-color:transparent;
-    color:transparent;">${buttonText}</span>
+    color:transparent;
+    animation:flowGradient 4s linear infinite;
+    ">${buttonText}</span>
     `;
     StartButton.style.background = "rgba(5,5,10,0.6)";
     StartButton.style.border = "1px solid rgba(255,255,255,0.2)";
+    StartButton.style.textShadow = "none";
+
     StartButton.style.boxShadow = `
-    -20px 0 30px ${Theme.topEdge}40,
-    20px 0 30px ${Theme.bottomEdge}40,
-    inset -15px 0 15px ${Theme.bottomEdge}20,
-    inset 15px 0 15px ${Theme.topEdge}20
-    `
+    -30px 0 60px ${Theme.topEdge}60,
+    30px 0 60px ${Theme.bottomEdge}60,
+    inset -20px 0 25px ${Theme.bottomEdge}30,
+    inset 20px 0 25px ${Theme.topEdge}30
+    `;
+
 }
 UpdateUI();
     
