@@ -29,7 +29,7 @@ let notes;
 let CenterX,CenterY;
 let MaxHeight;
 let DaTheme = 0;
-const NoOfStars = 120;
+const NoOfStars = 300;
 let Caps = new Array(256).fill(0)
 let stars
 // this function is the background mainly 
@@ -153,32 +153,32 @@ function DrawingEverything(){
     
     DaBrush.fillStyle = Theme.shadow;
     stars.forEach(p =>{
-        p.x+= p.vx * (1 +Bass*10);
-        p.y += p .vy * (1 +Bass*10);
+        p.x += p.vx * (1 + Bass*10);
+        p.y += p.vy * (1 + Bass*10);
 
-        if (p.x <0) p.x= DaCanvas.width;
-        if (p.x>DaCanvas.width) p.x = 0;
-        if(p.y < 0) p.y = DaCanvas.height;
-        if(p.y > DaCanvas.height) p.y = 0;
+        if (p.x < 0) p.x = DaCanvas.width;
+        if (p.x > DaCanvas.width) p.x = 0;
+        if (p.y < 0) p.y = DaCanvas.height;
+        if (p.y > DaCanvas.height) p.y = 0;
+
+        let isLeft = p.x < CenterX;
+        let pEdge = isLeft ? Theme.topEdge : Theme.bottomEdge;
+        let pMid = isLeft ? Theme.topMid : Theme.bottomMid;
 
         DaBrush.beginPath();
         if (Mode === "HexCore"){
-
-            DaBrush.arc(p.x,p.y,p.size*12,0,Math.PI *2);
-            DaBrush.fillStyle = Theme.topMid;
-            DaBrush.globalAlpha = Math.min(0.2, (p.globalAlpha*0.4) + (Bass*0.2));
+            DaBrush.arc(p.x, p.y, p.size*12, 0, Math.PI *2);
+            DaBrush.fillStyle = pMid;
+            DaBrush.globalAlpha = Math.min(0.2, (p.globalAlpha*0.4) + (Bass*0.2) + (breath*0.2));
             DaBrush.shadowBlur = 15;
-            DaBrush.shadowColor = Theme.bottomMid;
+            DaBrush.shadowColor = pEdge;
             DaBrush.fill();
-
-        }
-        else{
-        DaBrush.arc(p.x,p.y,p.size,0,Math.PI * 2);
-        DaBrush.fillStyle = Theme.shadow;
-        DaBrush.globalAlpha = Math.min(1,p.globalAlpha + (Bass*0.8));
-        DaBrush.shadowBlur = 0;
-        
-        DaBrush.fill();
+        } else {
+            DaBrush.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            DaBrush.fillStyle = pEdge;
+            DaBrush.globalAlpha = Math.min(1, p.globalAlpha + (Bass*0.8) + breath);
+            DaBrush.shadowBlur = 0;
+            DaBrush.fill();
         }
     });
     DaBrush.globalAlpha = 1;
@@ -211,18 +211,18 @@ function DrawingEverything(){
     colorGradient.addColorStop(0.6,Theme.bottomMid);
     colorGradient.addColorStop(1,Theme.bottomEdge);
 
-    for(let _=0;_<notes;_++){
+    for(let _=0; _<notes; _++){
 
         let Freq = AudioData[_]/255;
         let FreqMultiplier = 1 +(_/notes)*0.8;
         if (_ < 5) FreqMultiplier = 0.8;
-        let Height =Math.pow(Freq,1.4)*MaxHeight* FreqMultiplier;
-        if (Height<2) Height =0;
-        if (Height >Caps[_]) Caps[_] = Height; else Caps[_] -= 3;
-        if(Caps[_]<2) Caps[_] = 0;
+        let Height = Math.pow(Freq,1.4)*MaxHeight* FreqMultiplier;
+        if (Height<2) Height = 0;
+        
+        if (Height > Caps[_]) Caps[_] = Height; else Caps[_] -= 3;
+        if (Caps[_]<2) Caps[_] = 0;
 
-
-        if(Mode === "Straight"){
+        if (Mode === "Straight"){
             let x = (sliceWidth*_) + (sliceWidth *0.2) + glitchOffset;
             DaBrush.fillStyle = colorGradient;
             DaBrush.fillRect(x,barbase,barWidth,-Height);
@@ -232,26 +232,35 @@ function DrawingEverything(){
             DaBrush.fillStyle = Theme.bottomEdge;
             DaBrush.fillRect(x,barbase+Caps[_] +3, barWidth,3);
         }
-
-        else{
-            let angle= _* ((Math.PI *2)/notes);
+        else {
+            let angle = _ * ((Math.PI *2)/notes);
             DaBrush.save();
-            DaBrush.translate(CenterX +glitchOffset,CenterY +glitchOffset);
+            DaBrush.translate(CenterX + glitchOffset, CenterY + glitchOffset);
             DaBrush.rotate(angle);
-            let hexGradient = DaBrush.createLinearGradient(0,hexRadius,0,hexRadius+ MaxHeight);
-            hexGradient.addColorStop(0,Theme.center);
-            hexGradient.addColorStop(0.3,Theme.topMid);
-            hexGradient.addColorStop(1,Theme.topEdge);
-            DaBrush.fillStyle = hexGradient;
-            DaBrush.fillRect(-barWidth/2,hexRadius,barWidth,Height);
-            DaBrush.fillStyle = Theme.topEdge;
-            DaBrush.fillRect(-barWidth /2, hexRadius +Caps[_]+5,barWidth,4);
-            DaBrush.restore();
+            
+            // --- THE SPLIT RIVALRY ENGINE ---
+            // If Math.cos is negative, we are drawing on the left side of the circle
+            let isLeftBar = Math.cos(angle) < 0; 
+            
+            // Assign colors based on which side the current bar is on
+            let activeEdge = isLeftBar ? Theme.topEdge : Theme.bottomEdge;
+            let activeMid = isLeftBar ? Theme.topMid : Theme.bottomMid;
 
+            let hexGradient = DaBrush.createLinearGradient(0, hexRadius, 0, hexRadius + MaxHeight);
+            hexGradient.addColorStop(0, Theme.center);
+            hexGradient.addColorStop(0.3, activeMid);
+            hexGradient.addColorStop(1, activeEdge);
+            
+            DaBrush.fillStyle = hexGradient;
+            DaBrush.fillRect(-barWidth/2, hexRadius, barWidth, Height);
+            
+            // Color the gravity cap to match its side!
+            DaBrush.fillStyle = activeEdge; 
+            DaBrush.fillRect(-barWidth/2, hexRadius + Caps[_] + 5, barWidth, 4);
+            
+            DaBrush.restore();
         }
-        
     }
-    
 }
 // Animation
 function RunThisShi(){
