@@ -32,6 +32,7 @@ let DaTheme = 0;
 const NoOfStars = 300;
 let Caps = new Array(256).fill(0)
 let stars
+let idleFrames = 0;
 // this function is the background mainly 
 
 
@@ -149,7 +150,16 @@ function DrawingEverything(){
     let Theme = colors[DaTheme];
 
     let Bass = (AudioData[0]+AudioData[1]+AudioData[2]+AudioData[3]+AudioData[4])/5/255;
-    
+    if(Bass<0.01){
+        idleFrames++;
+    }
+    else{
+        idleFrames = 0;
+    }
+    let breath = 0;
+    if (idleFrames>120) {
+        breath = ((Math.sin(Date.now()/600)+1)/2)*0.5;
+    }
     
     DaBrush.fillStyle = Theme.shadow;
     stars.forEach(p =>{
