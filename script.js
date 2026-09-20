@@ -81,7 +81,7 @@ function UpdateUI(){
     }
 
     StartButton.innerHTML = `<span style="
-    background:linear-gradient(to right, ${Theme.topEdge},${Theme.bottomEdge})
+    background:linear-gradient(to right, ${Theme.topEdge},${Theme.bottomEdge});
     -webkit-background-clip:text;
     =webkit-text-fill-color:transparent;
     color:transparent;">${buttonText}</span>
@@ -91,26 +91,12 @@ function UpdateUI(){
     StartButton.style.boxShadow = `
     -20px 0 30px ${Theme.topEdge}40,
     20px 0 30px ${Theme.bottomEdge}40,
-    inset - 15px 0 15px ${Theme.bottomEdge}20,
+    inset -15px 0 15px ${Theme.bottomEdge}20,
     inset 15px 0 15px ${Theme.topEdge}20
     `
-
-
-    
-
-    if (StartButton.classList.contains("playing-mode")){
-        StartButton.innerText = Theme.name;
-    }
-    else{
-        StartButton.innerText = "START: "+ Theme.name;
-    }
-    StartButton.style.background = "rgba(5, 5, 10, 0.6)"; 
-    StartButton.style.borderColor = Theme.shadow;
-    StartButton.style.color = Theme.shadow;
-    StartButton.style.textShadow = "none";
-    StartButton.style.boxShadow = `0 0 15px ${Theme.shadow}40, inset 0 0 10px ${Theme.shadow}20`;
 }
 UpdateUI();
+    
 
 
 // just basic controls 
