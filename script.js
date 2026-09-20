@@ -94,6 +94,7 @@ function UpdateUI(){
     inset - 15px 0 15px ${Theme.bottomEdge}20,
     inset 15px 0 15px ${Theme.topEdge}20
     `
+}
 UpdateUI();
 
 
