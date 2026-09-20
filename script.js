@@ -94,6 +94,21 @@ function UpdateUI(){
     inset - 15px 0 15px ${Theme.bottomEdge}20,
     inset 15px 0 15px ${Theme.topEdge}20
     `
+
+
+    
+
+    if (StartButton.classList.contains("playing-mode")){
+        StartButton.innerText = Theme.name;
+    }
+    else{
+        StartButton.innerText = "START: "+ Theme.name;
+    }
+    StartButton.style.background = "rgba(5, 5, 10, 0.6)"; 
+    StartButton.style.borderColor = Theme.shadow;
+    StartButton.style.color = Theme.shadow;
+    StartButton.style.textShadow = "none";
+    StartButton.style.boxShadow = `0 0 15px ${Theme.shadow}40, inset 0 0 10px ${Theme.shadow}20`;
 }
 UpdateUI();
 
