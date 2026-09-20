@@ -73,29 +73,29 @@ function UpdateUI(){
     let Theme = colors[DaTheme]
     document.body.style.background = Theme.bg;
     const StartButton = document.getElementById("Start");
-    let modeText = Mode ==="HexCore"? "(Hex-Core)":"";
 
-    let buttonText = Theme.name + modeText;
+    let buttonText = Theme.name;
     if (!StartButton.classList.contains("playing-mode")){
         buttonText = "START: " + buttonText;
     }
 
     StartButton.innerHTML = `<span style="
-        background: linear-gradient(to right, ${Theme.bottomEdge}, ${Theme.topEdge});
+        background: linear-gradient(to right, ${Theme.topEdge}, ${Theme.bottomEdge});
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         color: transparent;
     ">${buttonText}</span>`;
+
     StartButton.style.background = "rgba(5, 5, 10, 0.6)"; 
     StartButton.style.border = "1px solid rgba(255, 255, 255, 0.2)";
     StartButton.style.textShadow = "none";
     StartButton.style.transition = "box-shadow 0.5s ease";
     
     StartButton.style.boxShadow = `
-        -30px 0 60px ${Theme.bottomEdge}60, 
-         30px 0 60px ${Theme.topEdge}60, 
-        inset -20px 0 25px ${Theme.topEdge}30, 
-        inset 20px 0 25px ${Theme.bottomEdge}30
+        -30px 0 60px ${Theme.topEdge}60, 
+         30px 0 60px ${Theme.bottomEdge}60, 
+        inset -20px 0 25px ${Theme.bottomEdge}30, 
+        inset 20px 0 25px ${Theme.topEdge}30
     `;
 
 }
