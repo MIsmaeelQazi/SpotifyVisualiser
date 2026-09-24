@@ -54,9 +54,9 @@ let idleFrames = 0;
 function GetTheme(){
     if (CurrentTheme === 3){
         return {
-            smoothing:0.32,
+            smoothing:0.62,
             BassBlast:48,
-            BassTrigger:0.75,
+            BassTrigger:0.85,
             CapFall:7,
             ChunkyStep:4,
             StarWarp:32,
