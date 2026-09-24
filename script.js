@@ -25,14 +25,14 @@ const Themes = {1:[
     { name: "JAYCE / VI", bg: "radial-gradient(circle at center, #000a1a 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#00ccff", center: "#000a1a", bottomMid: "#cc0000", bottomEdge: "#ffaa00", shadow: "#00ccff" }
 ],
 2: [
-        { name: "AMBIENT / HEXMIST", bg: "radial-gradient(circle at center, #02131a 0%, #000408 100%)", topEdge: "#70ffe3", topMid: "#1f6f8b", center: "#01080d", bottomMid: "#335577", bottomEdge: "#98ded9", shadow: "#1f6f8b" },
-        { name: "AMBIENT / DEEP ARCHIVE", bg: "radial-gradient(circle at center, #0a0e1a 0%, #000208 100%)", topEdge: "#89c4f4", topMid: "#2c3e50", center: "#030811", bottomMid: "#34495e", bottomEdge: "#5dade2", shadow: "#2c3e50" },
-        { name: "AMBIENT / BIO-MOSS", bg: "radial-gradient(circle at center, #07140e 0%, #000502 100%)", topEdge: "#9bf6ff", topMid: "#2a7b62", center: "#020a05", bottomMid: "#1b4d3e", bottomEdge: "#70e000", shadow: "#2a7b62" }
+        { name: "HEXMIST", bg: "radial-gradient(circle at center, #02131a 0%, #000408 100%)", topEdge: "#70ffe3", topMid: "#1f6f8b", center: "#01080d", bottomMid: "#335577", bottomEdge: "#98ded9", shadow: "#1f6f8b" },
+        { name: "DEEP ARCHIVE", bg: "radial-gradient(circle at center, #0a0e1a 0%, #000208 100%)", topEdge: "#89c4f4", topMid: "#2c3e50", center: "#030811", bottomMid: "#34495e", bottomEdge: "#5dade2", shadow: "#2c3e50" },
+        { name: "BIO-MOSS", bg: "radial-gradient(circle at center, #07140e 0%, #000502 100%)", topEdge: "#9bf6ff", topMid: "#2a7b62", center: "#020a05", bottomMid: "#1b4d3e", bottomEdge: "#70e000", shadow: "#2a7b62" }
     ],
     3: [
-        { name: "SPOOKY / BLOOD SHIMMER", bg: "radial-gradient(circle at center, #240003 0%, #050001 100%)", topEdge: "#ff0037", topMid: "#7a0010", center: "#000000", bottomMid: "#99004d", bottomEdge: "#ff0055", shadow: "#ff0033" },
-        { name: "SPOOKY / TOXIC SLIME", bg: "radial-gradient(circle at center, #081a00 0%, #010500 100%)", topEdge: "#39ff14", topMid: "#196603", center: "#000000", bottomMid: "#4b0082", bottomEdge: "#8b00ff", shadow: "#39ff14" },
-        { name: "SPOOKY / VOID ROT", bg: "radial-gradient(circle at center, #170024 0%, #010003 100%)", topEdge: "#d400ff", topMid: "#4d0066", center: "#000000", bottomMid: "#ff3300", bottomEdge: "#ff0055", shadow: "#d400ff" }
+        { name: "BLOOD SHIMMER", bg: "radial-gradient(circle at center, #240003 0%, #050001 100%)", topEdge: "#ff0037", topMid: "#7a0010", center: "#000000", bottomMid: "#99004d", bottomEdge: "#ff0055", shadow: "#ff0033" },
+        { name: "TOXIC SLIME", bg: "radial-gradient(circle at center, #081a00 0%, #010500 100%)", topEdge: "#39ff14", topMid: "#196603", center: "#000000", bottomMid: "#4b0082", bottomEdge: "#8b00ff", shadow: "#39ff14" },
+        { name: "VOID ROT", bg: "radial-gradient(circle at center, #170024 0%, #010003 100%)", topEdge: "#d400ff", topMid: "#4d0066", center: "#000000", bottomMid: "#ff3300", bottomEdge: "#ff0055", shadow: "#d400ff" }
     ]
 
 };
@@ -58,7 +58,7 @@ function GetTheme(){
             BassBlast:48,
             BassTrigger:0.75,
             CapFall:7,
-            ChunkyStep:12,
+            ChunkyStep:4,
             StarWarp:32,
             StarJitter:true,
             CapThickness:6,
