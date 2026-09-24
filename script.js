@@ -298,7 +298,7 @@ function DrawingEverything(){
         let Freq = AudioData[_]/255;
         let FreqMultiplier = 1 +(_/notes)*0.8;
         if (_ < 5) FreqMultiplier = 0.8;
-        let Height = Math.pow(Freq,1.4)*MaxHeight* FreqMultiplier;
+        let Height = Freq *MaxHeight* FreqMultiplier;
         if (ThemeDump.ChunkyStep> 0){
             Height = Math.floor(Height/ Theme.ChunkyStep)*Theme.ChunkyStep;
         }
