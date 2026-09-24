@@ -171,11 +171,6 @@ window.addEventListener("keydown",(event)=> {
         CurrentTheme = Number(event.key);
         DaTheme = 0;
     }
-    if (event.key === "2"){
-        CurrentTheme =2;
-        colors = Themes[2];
-
-    }
     if (event.key==="ArrowRight") DaTheme += 1;
     if (event.key==="ArrowLeft") DaTheme -= 1;
     if (DaTheme < 0){
@@ -235,7 +230,7 @@ function DrawingEverything(){
     stars.forEach(p =>{
         p.x += p.vx * (1 + Bass*ThemeDump.StarWarp);
         p.y += p.vy * (1 + Bass*ThemeDump.StarWarp);
-        if (ThemeDump.StarJitter && Bass ?0.45){
+        if (ThemeDump.StarJitter && Bass > 0.45){
             p.x += (Math.random() - 0.5)* 4;
             p.y += (Math.random() - 0.5)*4;
         }
@@ -278,7 +273,7 @@ function DrawingEverything(){
     let hexRadius= 130;
     if (Mode === "HexCore"){
         DaBrush.beginPath();
-        DaBrush.arc(CenterX +glitchOffset, CenterY +glitchOffset,hexRadius -5,0,Math.PI *2);
+        DaBrush.arc(CenterX +glitchOffsetX, CenterY +glitchOffsetY,hexRadius -5,0,Math.PI *2);
         DaBrush.fillStyle = Theme.center;
         DaBrush.shadowBlur = ThemeDump.BaseGlow + (Bass *80);
         DaBrush.shadowColor = Theme.topMid;
@@ -313,7 +308,7 @@ function DrawingEverything(){
         if (Caps[_]<2) Caps[_] = 0;
 
         if (Mode === "Straight"){
-            let x = (sliceWidth*_) + (sliceWidth *0.2) + glitchOffset;
+            let x = (sliceWidth*_) + (sliceWidth *0.2) + glitchOffsetX;
             DaBrush.fillStyle = colorGradient;
             DaBrush.fillRect(x,barbase,barWidth,-Height);
             DaBrush.fillRect(x,barbase,barWidth,Height);
@@ -327,7 +322,7 @@ function DrawingEverything(){
         else {
             let angle = _ * ((Math.PI *2)/notes);
             DaBrush.save();
-            DaBrush.translate(CenterX + glitchOffset, CenterY + glitchOffset);
+            DaBrush.translate(CenterX + glitchOffsetX, CenterY + glitchOffsetY);
             DaBrush.rotate(angle);
             
             // --- THE SPLIT RIVALRY ENGINE ---
@@ -358,7 +353,7 @@ function DrawingEverything(){
         let CutH = Math.random() * 35 +0;
         let CutShift = (Math.random()- 0.5)*45;
         DaBrush.drawImage(DaCanvas,0, CutY,DaCanvas.width,CutH,CutShift,CutY,DaCanvas.width,CutH);
-        
+
     }
 }
 // Animation
