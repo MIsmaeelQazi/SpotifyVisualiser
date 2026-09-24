@@ -299,9 +299,11 @@ function DrawingEverything(){
         let FreqMultiplier = 1 +(_/notes)*0.8;
         if (_ < 5) FreqMultiplier = 0.8;
         let Height = Freq *MaxHeight* FreqMultiplier;
+        
         if (ThemeDump.ChunkyStep> 0){
-            Height = Math.floor(Height/ Theme.ChunkyStep)*Theme.ChunkyStep;
+            Height = Math.floor(Height/ ThemeDump.ChunkyStep)*ThemeDump.ChunkyStep;
         }
+        
         if (Height<2) Height = 0;
         
         if (Height > Caps[_]) Caps[_] = Height; else Caps[_] -= ThemeDump.CapFall;
