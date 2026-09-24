@@ -7,7 +7,7 @@ const analysier = DaAudio.createAnalyser();
 analysier.fftSize = 512;
 analysier.smoothingTimeConstant = 0.85;
 const AudioData = new Uint8Array(analysier.frequencyBinCount)
-const colors = [
+const Themes = {1:[
     { name: "VI / JINX", bg: "radial-gradient(circle at center, #1a0005 0%, #000000 100%)", topEdge: "#ffaa00", topMid: "#cc0000", center: "#050005", bottomMid: "#0077ff", bottomEdge: "#ff00aa", shadow: "#0077ff" },
     { name: "JAYCE / VIKTOR", bg: "radial-gradient(circle at center, #000a1a 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#00ccff", center: "#00050a", bottomMid: "#7a00cc", bottomEdge: "#00ff66", shadow: "#7a00cc" },
     { name: "EKKO / JINX", bg: "radial-gradient(circle at center, #001a0a 0%, #000000 100%)", topEdge: "#ffcc00", topMid: "#00cc44", center: "#001a0a", bottomMid: "#0077ff", bottomEdge: "#ff00aa", shadow: "#00cc44" },
@@ -23,18 +23,79 @@ const colors = [
     { name: "ISHA / JINX", bg: "radial-gradient(circle at center, #1a1500 0%, #000000 100%)", topEdge: "#ccffff", topMid: "#ccaa00", center: "#1a1500", bottomMid: "#0077ff", bottomEdge: "#ff00aa", shadow: "#ccaa00" },
     { name: "JINX / CAITLYN", bg: "radial-gradient(circle at center, #05001a 0%, #000000 100%)", topEdge: "#ff00aa", topMid: "#0077ff", center: "#05001a", bottomMid: "#0044cc", bottomEdge: "#00ffff", shadow: "#0077ff" },
     { name: "JAYCE / VI", bg: "radial-gradient(circle at center, #000a1a 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#00ccff", center: "#000a1a", bottomMid: "#cc0000", bottomEdge: "#ffaa00", shadow: "#00ccff" }
-];
+],
+2: [
+        { name: "AMBIENT / HEXMIST", bg: "radial-gradient(circle at center, #02131a 0%, #000408 100%)", topEdge: "#70ffe3", topMid: "#1f6f8b", center: "#01080d", bottomMid: "#335577", bottomEdge: "#98ded9", shadow: "#1f6f8b" },
+        { name: "AMBIENT / DEEP ARCHIVE", bg: "radial-gradient(circle at center, #0a0e1a 0%, #000208 100%)", topEdge: "#89c4f4", topMid: "#2c3e50", center: "#030811", bottomMid: "#34495e", bottomEdge: "#5dade2", shadow: "#2c3e50" },
+        { name: "AMBIENT / BIO-MOSS", bg: "radial-gradient(circle at center, #07140e 0%, #000502 100%)", topEdge: "#9bf6ff", topMid: "#2a7b62", center: "#020a05", bottomMid: "#1b4d3e", bottomEdge: "#70e000", shadow: "#2a7b62" }
+    ],
+    3: [
+        { name: "SPOOKY / BLOOD SHIMMER", bg: "radial-gradient(circle at center, #240003 0%, #050001 100%)", topEdge: "#ff0037", topMid: "#7a0010", center: "#000000", bottomMid: "#99004d", bottomEdge: "#ff0055", shadow: "#ff0033" },
+        { name: "SPOOKY / TOXIC SLIME", bg: "radial-gradient(circle at center, #081a00 0%, #010500 100%)", topEdge: "#39ff14", topMid: "#196603", center: "#000000", bottomMid: "#4b0082", bottomEdge: "#8b00ff", shadow: "#39ff14" },
+        { name: "SPOOKY / VOID ROT", bg: "radial-gradient(circle at center, #170024 0%, #010003 100%)", topEdge: "#d400ff", topMid: "#4d0066", center: "#000000", bottomMid: "#ff3300", bottomEdge: "#ff0055", shadow: "#d400ff" }
+    ]
 
+};
+
+let CurrentTheme = 1;
+let colors = Themes[CurrentTheme];
+let DaTheme = 0;
+let Mode = "Straight"
 let notes;
 let CenterX,CenterY;
 let MaxHeight;
-let DaTheme = 0;
 const NoOfStars = 300;
 let Caps = new Array(256).fill(0)
 let stars
 let idleFrames = 0;
+
 // this function is the background mainly 
 
+function GetTheme(){
+    if (CurrentTheme === 3){
+        return {
+            smoothing:0.32,
+            BassBlast:48,
+            BassTrigger:0.75,
+            CapFall:7,
+            ChunkyStep:12,
+            StarWarp:32,
+            StarJitter:true,
+            CapThickness:6,
+            BaseGlow:35,
+            Glitch: true
+        };
+
+    }
+    else if(CurrentTheme ===2) {
+        return{
+            smoothing:0.93,
+            BassBlast:4,
+            BassTrigger:0.96,
+            CapFall:1.4,
+            ChunkyStep:0,
+            StarWarp:4,
+            StarJitter:false,
+            CapThickness:4,
+            BaseGlow:20,
+            Glitch: false
+        };
+    }
+    return {
+        smoothing:0.85,
+        BassBlast:20,
+        BassTrigger:0.90,
+        CapFall:3.2,
+        ChunkyStep:0,
+        StarWarp:10,
+        StarJitter:false,
+        CapThickness:3,
+        BaseGlow:20,
+        Glitch: true
+    }
+
+
+}
 
 function Starry(){
     stars = [];
@@ -69,9 +130,10 @@ Size();
 window.addEventListener("resize",Size);
 
 // to switch themes and modes  
-let Mode = "Straight"
 function UpdateUI(){
+    colors = Themes[CurrentTheme];
     let Theme = colors[DaTheme]
+    analysier.smoothingTimeConstant = GetTheme().smoothing;
     document.body.style.background = Theme.bg;
     const StartButton = document.getElementById("Start");
 
@@ -103,10 +165,17 @@ function UpdateUI(){
 UpdateUI();
     
 
-
 // just basic controls 
 window.addEventListener("keydown",(event)=> {
-    
+    if (["1","2","3"].includes(event.key)){
+        CurrentTheme = Number(event.key);
+        DaTheme = 0;
+    }
+    if (event.key === "2"){
+        CurrentTheme =2;
+        colors = Themes[2];
+
+    }
     if (event.key==="ArrowRight") DaTheme += 1;
     if (event.key==="ArrowLeft") DaTheme -= 1;
     if (DaTheme < 0){
@@ -146,6 +215,7 @@ async function startVisualizer(){
 function DrawingEverything(){
     DaBrush.clearRect(0,0,DaCanvas.width,DaCanvas.height);
     analysier.getByteFrequencyData(AudioData);
+    const ThemeDump = GetTheme();
     let barbase = DaCanvas.height/2;
     let Theme = colors[DaTheme];
 
@@ -163,8 +233,13 @@ function DrawingEverything(){
     
     DaBrush.fillStyle = Theme.shadow;
     stars.forEach(p =>{
-        p.x += p.vx * (1 + Bass*10);
-        p.y += p.vy * (1 + Bass*10);
+        p.x += p.vx * (1 + Bass*ThemeDump.StarWarp);
+        p.y += p.vy * (1 + Bass*ThemeDump.StarWarp);
+        if (ThemeDump.StarJitter && Bass ?0.45){
+            p.x += (Math.random() - 0.5)* 4;
+            p.y += (Math.random() - 0.5)*4;
+        }
+
 
         if (p.x < 0) p.x = DaCanvas.width;
         if (p.x > DaCanvas.width) p.x = 0;
@@ -194,16 +269,18 @@ function DrawingEverything(){
     DaBrush.globalAlpha = 1;
     DaBrush.shadowBlur = 0;
 
-    let glitchOffset = 0;
-    if(Bass > 0.92){
-        glitchOffset = (Math.random()-0.5)*(Bass*30);
+    let glitchOffsetX = 0;
+    let glitchOffsetY =0;
+    if(Bass > ThemeDump.BassTrigger){
+        glitchOffsetX = (Math.random()-0.5)*(Bass*ThemeDump.BassBlast);
+        glitchOffsetY = (Math.random()-0.5)*(Bass*ThemeDump.BassBlast*0.5);
     }
     let hexRadius= 130;
     if (Mode === "HexCore"){
         DaBrush.beginPath();
         DaBrush.arc(CenterX +glitchOffset, CenterY +glitchOffset,hexRadius -5,0,Math.PI *2);
         DaBrush.fillStyle = Theme.center;
-        DaBrush.shadowBlur = 20 + (Bass *80);
+        DaBrush.shadowBlur = ThemeDump.BaseGlow + (Bass *80);
         DaBrush.shadowColor = Theme.topMid;
         DaBrush.fill();
         DaBrush.shadowBlur = 0;
@@ -227,9 +304,12 @@ function DrawingEverything(){
         let FreqMultiplier = 1 +(_/notes)*0.8;
         if (_ < 5) FreqMultiplier = 0.8;
         let Height = Math.pow(Freq,1.4)*MaxHeight* FreqMultiplier;
+        if (ThemeDump.ChunkyStep> 0){
+            Height = Math.floor(Height/ Theme.ChunkyStep)*Theme.ChunkyStep;
+        }
         if (Height<2) Height = 0;
         
-        if (Height > Caps[_]) Caps[_] = Height; else Caps[_] -= 3;
+        if (Height > Caps[_]) Caps[_] = Height; else Caps[_] -= ThemeDump.CapFall;
         if (Caps[_]<2) Caps[_] = 0;
 
         if (Mode === "Straight"){
@@ -237,10 +317,12 @@ function DrawingEverything(){
             DaBrush.fillStyle = colorGradient;
             DaBrush.fillRect(x,barbase,barWidth,-Height);
             DaBrush.fillRect(x,barbase,barWidth,Height);
+
+
             DaBrush.fillStyle = Theme.topEdge;
-            DaBrush.fillRect(x,barbase-Caps[_] -6, barWidth,3);
+            DaBrush.fillRect(x,(barbase +glitchOffsetY)-Caps[_] -6, barWidth,ThemeDump.CapThickness);
             DaBrush.fillStyle = Theme.bottomEdge;
-            DaBrush.fillRect(x,barbase+Caps[_] +3, barWidth,3);
+            DaBrush.fillRect(x,(barbase + glitchOffsetY)+Caps[_] +3, barWidth,ThemeDump.CapThickness);
         }
         else {
             let angle = _ * ((Math.PI *2)/notes);
@@ -252,7 +334,7 @@ function DrawingEverything(){
             // If Math.cos is negative, we are drawing on the left side of the circle
             let isLeftBar = Math.cos(angle) < 0; 
             
-            // Assign colors based on which side the current bar is on
+            // Assigning colors based on which side the current bar is on
             let activeEdge = isLeftBar ? Theme.topEdge : Theme.bottomEdge;
             let activeMid = isLeftBar ? Theme.topMid : Theme.bottomMid;
 
@@ -266,10 +348,17 @@ function DrawingEverything(){
             
             // Color the gravity cap to match its side!
             DaBrush.fillStyle = activeEdge; 
-            DaBrush.fillRect(-barWidth/2, hexRadius + Caps[_] + 5, barWidth, 4);
+            DaBrush.fillRect(-barWidth/2, hexRadius + Caps[_] + 5, barWidth, ThemeDump.CapThickness);
             
             DaBrush.restore();
         }
+    }
+    if (ThemeDump.Glitch && Bass > 0.88 && Math.random()> 0.4){
+        let CutY = Math.random() * DaCanvas.height;
+        let CutH = Math.random() * 35 +0;
+        let CutShift = (Math.random()- 0.5)*45;
+        DaBrush.drawImage(DaCanvas,0, CutY,DaCanvas.width,CutH,CutShift,CutY,DaCanvas.width,CutH);
+        
     }
 }
 // Animation
