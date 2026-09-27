@@ -1,86 +1,14 @@
-### Hi! Welcome to your VS-Code Space!
+# Arcane Themed Visualizer
 
-You can use this just like you would vs-code on your own computer! For security reasons, we can not give you root access to the container, but we have preinstalled a number of development tools for you!
+## I literally just finished watching arcane so i had to do something that distracts me from ma meilleure ennemie. Turns out it was impossible (Ball Knowledge Required). So i Made this.
 
-#### Pre-installed tools:
-If a tool you need is not listed, attempt to install it using one of the package managers listed, and if that is not possible, ask in #spaces on slack and I can probably add the tool!
+### What is It
 
-If a tool listed here is not working, wait a few minutes and try again! The installation is ran in the background upon space creation to minimize space creation times, so you might have to wait a minute or two for all tools to become available
+- It is an audio visualizer that uses Web Audio API and Canvas
+- It works getting the audio by screen share and then cuts out the video and uses the audio only. 
 
-##### Hackatime
+- Because i wanted it to be versitile to my newer addictions so i added themes so i have ambient for synthwave and Aggressive for phonk. 
 
-Make sure to set your hackatime api key in settings! if you have done that, Hackatime has been auto installed and set up for you, and will be tracking your time
+### Original Idea
+The idea is to project this to my wall to make a smart room. using extend option on any mini projector i will have it on my wall or roof.
 
-##### General
-```
-git
-github-cli
-curl
-wget
-nano
-unzip
-build-essentials
-apt-transport-https
-ca-certificates
-gnupg
-```
-##### Python:
-```
-python3
-python3-pip
-python3-venv
-python3-dev
-python3-setuptools
-uv
-```
-
-##### Javascript:
-```
-nodejs
-npm
-yarn
-pnpm
-```
-
-##### Java:
-```
-openjdk-17-jdk
-openjdk-17-jre
-```
-
-##### Rust:
-```
-rust
-cargo
-```
-
-##### PHP:
-```
-php 
-php-cli 
-php-common 
-php-curl 
-php-json 
-php-mbstring 
-php-xml 
-php-zip
-```
-
-##### Database:
-```
-sqlite3
-postgresql-client
-mysql-client
-```
-
-##### Ruby:
-```
-ruby
-rails
-```
-
-###### Other:
-```
-go
-crystal
-```
