@@ -25,7 +25,7 @@ const Themes = {1:[
     { name: "JAYCE / VI", bg: "radial-gradient(circle at center, #000a1a 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#00ccff", center: "#000a1a", bottomMid: "#cc0000", bottomEdge: "#ffaa00", shadow: "#00ccff" }
 ],
 2: [
-    /
+    
     { name: "ABYSS", bg: "radial-gradient(circle at center, #02131a 0%, #000408 100%)", topEdge: "#70ffe3", topMid: "#1f6f8b", center: "#01080d", bottomMid: "#335577", bottomEdge: "#98ded9", shadow: "#1f6f8b" },
     { name: "NEBULA DRIFT", bg: "radial-gradient(circle at center, #0d0819 0%, #020108 100%)", topEdge: "#d4a5ff", topMid: "#5e3a8c", center: "#080410", bottomMid: "#311e4d", bottomEdge: "#9d65d8", shadow: "#5e3a8c" },
     { name: "SOLAR ECLIPSE", bg: "radial-gradient(circle at center, #1a0f02 0%, #050200 100%)", topEdge: "#ffd166", topMid: "#b5651d", center: "#0a0501", bottomMid: "#5c2c16", bottomEdge: "#f4a261", shadow: "#b5651d" },
