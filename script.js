@@ -197,6 +197,8 @@ async function startVisualizer(){
         
 
         document.getElementById("Start").classList.add("playing-mode");
+        document.getElementById("MadeBy").classList.add("hidden");
+        document.getElementById("HowToUse").classList.add("hidden");
         UpdateUI();
         RunThisShi();
     }
