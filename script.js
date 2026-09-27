@@ -25,28 +25,27 @@ const Themes = {1:[
     { name: "JAYCE / VI", bg: "radial-gradient(circle at center, #000a1a 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#00ccff", center: "#000a1a", bottomMid: "#cc0000", bottomEdge: "#ffaa00", shadow: "#00ccff" }
 ],
 2: [
-    
-    { name: "ABYSS", bg: "radial-gradient(circle at center, #02131a 0%, #000408 100%)", topEdge: "#70ffe3", topMid: "#1f6f8b", center: "#01080d", bottomMid: "#335577", bottomEdge: "#98ded9", shadow: "#1f6f8b" },
-    { name: "NEBULA DRIFT", bg: "radial-gradient(circle at center, #0d0819 0%, #020108 100%)", topEdge: "#d4a5ff", topMid: "#5e3a8c", center: "#080410", bottomMid: "#311e4d", bottomEdge: "#9d65d8", shadow: "#5e3a8c" },
-    { name: "SOLAR ECLIPSE", bg: "radial-gradient(circle at center, #1a0f02 0%, #050200 100%)", topEdge: "#ffd166", topMid: "#b5651d", center: "#0a0501", bottomMid: "#5c2c16", bottomEdge: "#f4a261", shadow: "#b5651d" },
-    { name: "DEEP TRENCH", bg: "radial-gradient(circle at center, #001217 0%, #000305 100%)", topEdge: "#00f0ff", topMid: "#005577", center: "#00080a", bottomMid: "#002838", bottomEdge: "#05d5e8", shadow: "#005577" },
-    { name: "CHRONO OASIS", bg: "radial-gradient(circle at center, #051410 0%, #010503 100%)", topEdge: "#52b788", topMid: "#1b4332", center: "#020a06", bottomMid: "#2d6a4f", bottomEdge: "#74c69d", shadow: "#1b4332" },
-    { name: "DUSK HORIZON", bg: "radial-gradient(circle at center, #170d14 0%, #050204 100%)", topEdge: "#f7aef8", topMid: "#7b2cbf", center: "#0c060b", bottomMid: "#3c096c", bottomEdge: "#b388eb", shadow: "#7b2cbf" },
-    { name: "FROST VAULT", bg: "radial-gradient(circle at center, #081119 0%, #010408 100%)", topEdge: "#e0fbfc", topMid: "#3d5a80", center: "#04090f", bottomMid: "#293241", bottomEdge: "#98c1d9", shadow: "#3d5a80" },
-    { name: "VELVET GROVE", bg: "radial-gradient(circle at center, #140b05 0%, #050201 100%)", topEdge: "#e9c46a", topMid: "#8f5d38", center: "#0a0502", bottomMid: "#5c3d2e", bottomEdge: "#dda15e", shadow: "#8f5d38" },
-    { name: "ETHER ECHO", bg: "radial-gradient(circle at center, #051119 0%, #010408 100%)", topEdge: "#a8dadc", topMid: "#457b9d", center: "#02080d", bottomMid: "#1d3557", bottomEdge: "#64b5f6", shadow: "#457b9d" }
+    { name: "Teal Mist", bg: "radial-gradient(circle at center, #02131a 0%, #000408 100%)", topEdge: "#70ffe3", topMid: "#1f6f8b", center: "#01080d", bottomMid: "#335577", bottomEdge: "#98ded9", shadow: "#1f6f8b" },
+    { name: "Soft Purple", bg: "radial-gradient(circle at center, #0d0819 0%, #020108 100%)", topEdge: "#d4a5ff", topMid: "#5e3a8c", center: "#080410", bottomMid: "#311e4d", bottomEdge: "#9d65d8", shadow: "#5e3a8c" },
+    { name: "Warm Gold", bg: "radial-gradient(circle at center, #1a0f02 0%, #050200 100%)", topEdge: "#ffd166", topMid: "#b5651d", center: "#0a0501", bottomMid: "#5c2c16", bottomEdge: "#f4a261", shadow: "#b5651d" },
+    { name: "Deep Cyan", bg: "radial-gradient(circle at center, #001217 0%, #000305 100%)", topEdge: "#00f0ff", topMid: "#005577", center: "#00080a", bottomMid: "#002838", bottomEdge: "#05d5e8", shadow: "#005577" },
+    { name: "Forest Green", bg: "radial-gradient(circle at center, #051410 0%, #010503 100%)", topEdge: "#52b788", topMid: "#1b4332", center: "#020a06", bottomMid: "#2d6a4f", bottomEdge: "#74c69d", shadow: "#1b4332" },
+    { name: "Lavender", bg: "radial-gradient(circle at center, #170d14 0%, #050204 100%)", topEdge: "#f7aef8", topMid: "#7b2cbf", center: "#0c060b", bottomMid: "#3c096c", bottomEdge: "#b388eb", shadow: "#7b2cbf" },
+    { name: "Ice Blue", bg: "radial-gradient(circle at center, #081119 0%, #010408 100%)", topEdge: "#e0fbfc", topMid: "#3d5a80", center: "#04090f", bottomMid: "#293241", bottomEdge: "#98c1d9", shadow: "#3d5a80" },
+    { name: "Amber", bg: "radial-gradient(circle at center, #140b05 0%, #050201 100%)", topEdge: "#e9c46a", topMid: "#8f5d38", center: "#0a0502", bottomMid: "#5c3d2e", bottomEdge: "#dda15e", shadow: "#8f5d38" },
+    { name: "Slate Blue", bg: "radial-gradient(circle at center, #051119 0%, #010408 100%)", topEdge: "#a8dadc", topMid: "#457b9d", center: "#02080d", bottomMid: "#1d3557", bottomEdge: "#64b5f6", shadow: "#457b9d" }
 ],
 
 3: [
-    { name: "BLOOD SHIMMER", bg: "radial-gradient(circle at center, #240003 0%, #050001 100%)", topEdge: "#ff0037", topMid: "#7a0010", center: "#000000", bottomMid: "#99004d", bottomEdge: "#ff0055", shadow: "#ff0033" },
-    { name: "CHEM-TOXIN", bg: "radial-gradient(circle at center, #031400 0%, #000000 100%)", topEdge: "#39ff14", topMid: "#196603", center: "#000000", bottomMid: "#4b0082", bottomEdge: "#8b00ff", shadow: "#39ff14" },
-    { name: "VOID DECAY", bg: "radial-gradient(circle at center, #14001f 0%, #000000 100%)", topEdge: "#cc00ff", topMid: "#520066", center: "#000000", bottomMid: "#ff0055", bottomEdge: "#990026", shadow: "#cc00ff" },
-    { name: "WARLOCK EYE", bg: "radial-gradient(circle at center, #1a0800 0%, #000000 100%)", topEdge: "#ff2a00", topMid: "#701200", center: "#000000", bottomMid: "#ffaa00", bottomEdge: "#ff0000", shadow: "#ff2a00" },
-    { name: "GHOST PHANTOM", bg: "radial-gradient(circle at center, #001214 0%, #000000 100%)", topEdge: "#00ffcc", topMid: "#005244", center: "#000000", bottomMid: "#2b0054", bottomEdge: "#7700ff", shadow: "#00ffcc" },
-    { name: "BLACK CHERRY", bg: "radial-gradient(circle at center, #170007 0%, #000000 100%)", topEdge: "#ff1493", topMid: "#59002a", center: "#000000", bottomMid: "#260012", bottomEdge: "#c9004f", shadow: "#ff1493" },
-    { name: "CYBER SLASHER", bg: "radial-gradient(circle at center, #12001a 0%, #000000 100%)", topEdge: "#ff0055", topMid: "#660033", center: "#000000", bottomMid: "#00e5ff", bottomEdge: "#0066cc", shadow: "#ff0055" },
-    { name: "ACID GRAVE", bg: "radial-gradient(circle at center, #0d1200 0%, #000000 100%)", topEdge: "#ccff00", topMid: "#405900", center: "#000000", bottomMid: "#ff3700", bottomEdge: "#801100", shadow: "#ccff00" },
-    { name: "ASH & OBSIDIAN", bg: "radial-gradient(circle at center, #111111 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#444444", center: "#000000", bottomMid: "#1a1a1a", bottomEdge: "#888888", shadow: "#ffffff" }
+    { name: "Crimson Blood", bg: "radial-gradient(circle at center, #240003 0%, #050001 100%)", topEdge: "#ff0037", topMid: "#7a0010", center: "#000000", bottomMid: "#99004d", bottomEdge: "#ff0055", shadow: "#ff0033" },
+    { name: "Toxic Green", bg: "radial-gradient(circle at center, #031400 0%, #000000 100%)", topEdge: "#39ff14", topMid: "#196603", center: "#000000", bottomMid: "#4b0082", bottomEdge: "#8b00ff", shadow: "#39ff14" },
+    { name: "Dark Purple", bg: "radial-gradient(circle at center, #14001f 0%, #000000 100%)", topEdge: "#cc00ff", topMid: "#520066", center: "#000000", bottomMid: "#ff0055", bottomEdge: "#990026", shadow: "#cc00ff" },
+    { name: "Inferno Orange", bg: "radial-gradient(circle at center, #1a0800 0%, #000000 100%)", topEdge: "#ff2a00", topMid: "#701200", center: "#000000", bottomMid: "#ffaa00", bottomEdge: "#ff0000", shadow: "#ff2a00" },
+    { name: "Ghost Cyan", bg: "radial-gradient(circle at center, #001214 0%, #000000 100%)", topEdge: "#00ffcc", topMid: "#005244", center: "#000000", bottomMid: "#2b0054", bottomEdge: "#7700ff", shadow: "#00ffcc" },
+    { name: "Neon Rose", bg: "radial-gradient(circle at center, #170007 0%, #000000 100%)", topEdge: "#ff1493", topMid: "#59002a", center: "#000000", bottomMid: "#260012", bottomEdge: "#c9004f", shadow: "#ff1493" },
+    { name: "Cyber Red", bg: "radial-gradient(circle at center, #12001a 0%, #000000 100%)", topEdge: "#ff0055", topMid: "#660033", center: "#000000", bottomMid: "#00e5ff", bottomEdge: "#0066cc", shadow: "#ff0055" },
+    { name: "Acid Lime", bg: "radial-gradient(circle at center, #0d1200 0%, #000000 100%)", topEdge: "#ccff00", topMid: "#405900", center: "#000000", bottomMid: "#ff3700", bottomEdge: "#801100", shadow: "#ccff00" },
+    { name: "Obsidian White", bg: "radial-gradient(circle at center, #111111 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#444444", center: "#000000", bottomMid: "#1a1a1a", bottomEdge: "#888888", shadow: "#ffffff" }
 ]
 
 };
@@ -68,11 +67,11 @@ let idleFrames = 0;
 function GetTheme(){
     if (CurrentTheme === 3){
         return {
-            smoothing:0.62,
+            smoothing:0.72,
             BassBlast:48,
             BassTrigger:0.85,
-            CapFall:7,
-            ChunkyStep:4,
+            CapFall:5.5,
+            ChunkyStep:10,
             StarWarp:32,
             StarJitter:true,
             CapThickness:6,
