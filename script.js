@@ -37,17 +37,11 @@ const Themes = {1:[
 ],
 
 3: [
-    { name: "Crimson Blood", bg: "radial-gradient(circle at center, #240003 0%, #050001 100%)", topEdge: "#ff0037", topMid: "#7a0010", center: "#000000", bottomMid: "#99004d", bottomEdge: "#ff0055", shadow: "#ff0033" },
-    { name: "Toxic Green", bg: "radial-gradient(circle at center, #031400 0%, #000000 100%)", topEdge: "#39ff14", topMid: "#196603", center: "#000000", bottomMid: "#4b0082", bottomEdge: "#8b00ff", shadow: "#39ff14" },
-    { name: "Dark Purple", bg: "radial-gradient(circle at center, #14001f 0%, #000000 100%)", topEdge: "#cc00ff", topMid: "#520066", center: "#000000", bottomMid: "#ff0055", bottomEdge: "#990026", shadow: "#cc00ff" },
-    { name: "Inferno Orange", bg: "radial-gradient(circle at center, #1a0800 0%, #000000 100%)", topEdge: "#ff2a00", topMid: "#701200", center: "#000000", bottomMid: "#ffaa00", bottomEdge: "#ff0000", shadow: "#ff2a00" },
-    { name: "Ghost Cyan", bg: "radial-gradient(circle at center, #001214 0%, #000000 100%)", topEdge: "#00ffcc", topMid: "#005244", center: "#000000", bottomMid: "#2b0054", bottomEdge: "#7700ff", shadow: "#00ffcc" },
-    { name: "Neon Rose", bg: "radial-gradient(circle at center, #170007 0%, #000000 100%)", topEdge: "#ff1493", topMid: "#59002a", center: "#000000", bottomMid: "#260012", bottomEdge: "#c9004f", shadow: "#ff1493" },
-    { name: "Cyber Red", bg: "radial-gradient(circle at center, #12001a 0%, #000000 100%)", topEdge: "#ff0055", topMid: "#660033", center: "#000000", bottomMid: "#00e5ff", bottomEdge: "#0066cc", shadow: "#ff0055" },
-    { name: "Acid Lime", bg: "radial-gradient(circle at center, #0d1200 0%, #000000 100%)", topEdge: "#ccff00", topMid: "#405900", center: "#000000", bottomMid: "#ff3700", bottomEdge: "#801100", shadow: "#ccff00" },
-    { name: "Obsidian White", bg: "radial-gradient(circle at center, #111111 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#444444", center: "#000000", bottomMid: "#1a1a1a", bottomEdge: "#888888", shadow: "#ffffff" }
+    { name: "BLOODBATH", bg: "radial-gradient(circle at center, #1a0000 0%, #000000 100%)", topEdge: "#ff0000", topMid: "#990000", center: "#000000", bottomMid: "#4a0000", bottomEdge: "#ff3333", shadow: "#ff0000" },
+    { name: "POLTERGEIST", bg: "radial-gradient(circle at center, #001a14 0%, #000000 100%)", topEdge: "#00ffcc", topMid: "#006644", center: "#000000", bottomMid: "#003322", bottomEdge: "#33ffaa", shadow: "#00ffcc" },
+    { name: "GRAVEYARD", bg: "radial-gradient(circle at center, #0a0a0a 0%, #000000 100%)", topEdge: "#a3a3a3", topMid: "#4d4d4d", center: "#000000", bottomMid: "#262626", bottomEdge: "#ffffff", shadow: "#ffffff" },
+    { name: "JACK-O-LANTERN", bg: "radial-gradient(circle at center, #1a0800 0%, #000000 100%)", topEdge: "#ff6600", topMid: "#cc3300", center: "#000000", bottomMid: "#661100", bottomEdge: "#ff9900", shadow: "#ff6600" }
 ]
-
 };
 
 let CurrentTheme = 1;
@@ -259,23 +253,34 @@ function DrawingEverything(){
         let isLeft = p.x < CenterX;
         let pEdge = isLeft ? Theme.topEdge : Theme.bottomEdge;
         let pMid = isLeft ? Theme.topMid : Theme.bottomMid;
-
-        DaBrush.beginPath();
-        if (Mode === "HexCore"){
-            DaBrush.arc(p.x, p.y, p.size*12, 0, Math.PI *2);
-            DaBrush.fillStyle = pMid;
-            DaBrush.globalAlpha = Math.min(0.2, (p.globalAlpha*0.4) + (Bass*0.2) + (breath*0.2));
-            DaBrush.shadowBlur = 15;
+        if (CurrentTheme === 3){
+            DaBrush.font=`${p.size *2}px Arial`;
+            DaBrush.textAlign = "center";
+            DaBrush.textBaseLine = "middle";
+            DaBrush.globalAlpha = Math.min(0.9,(p.globalAlpha) +(Bass*0.6) +breath);
+            DaBrush.shadowBlur = Mode === "HexCore" ? 15:0;
             DaBrush.shadowColor = pEdge;
-            DaBrush.fill();
-        } else {
-            DaBrush.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-            DaBrush.fillStyle = pEdge;
-            DaBrush.globalAlpha = Math.min(1, p.globalAlpha + (Bass*0.8) + breath);
-            DaBrush.shadowBlur = 0;
-            DaBrush.fill();
+            DaBrush.fillText(p.shaper,p.x,p.y);
         }
-    });
+        
+        else {
+            DaBrush.beginPath();
+            if (Mode === "HexCore"){
+                DaBrush.arc(p.x, p.y, p.size*12, 0, Math.PI *2);
+                DaBrush.fillStyle = pMid;
+                DaBrush.globalAlpha = Math.min(0.2, (p.globalAlpha*0.4) + (Bass*0.2) + (breath*0.2));
+                DaBrush.shadowBlur = 15;
+                DaBrush.shadowColor = pEdge;
+                DaBrush.fill();
+            } else {
+                DaBrush.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                DaBrush.fillStyle = pEdge;
+                DaBrush.globalAlpha = Math.min(1, p.globalAlpha + (Bass*0.8) + breath);
+                DaBrush.shadowBlur = 0;
+                DaBrush.fill();
+            }
+}
+});
     DaBrush.globalAlpha = 1;
     DaBrush.shadowBlur = 0;
 
@@ -284,7 +289,15 @@ function DrawingEverything(){
     if(Bass > ThemeDump.BassTrigger){
         glitchOffsetX = (Math.random()-0.5)*(Bass*ThemeDump.BassBlast);
         glitchOffsetY = (Math.random()-0.5)*(Bass*ThemeDump.BassBlast*0.5);
+        
+        if (CurrentTheme === 3){
+            DaBrush.fillStyle = `rgba(150,0,0, ${Bass * 0.15})`;
+            DaBrush.fillRect(0,0,DaCanvas.width, DaCanvas.height);
+        }
+    
     }
+
+
     let hexRadius= 130;
     if (Mode === "HexCore"){
         DaBrush.beginPath();
