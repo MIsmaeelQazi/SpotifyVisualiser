@@ -40,8 +40,12 @@ const Themes = {1:[
     { name: "BLOODBATH", bg: "radial-gradient(circle at center, #1a0000 0%, #000000 100%)", topEdge: "#ff0000", topMid: "#990000", center: "#000000", bottomMid: "#4a0000", bottomEdge: "#ff3333", shadow: "#ff0000" },
     { name: "POLTERGEIST", bg: "radial-gradient(circle at center, #001a14 0%, #000000 100%)", topEdge: "#00ffcc", topMid: "#006644", center: "#000000", bottomMid: "#003322", bottomEdge: "#33ffaa", shadow: "#00ffcc" },
     { name: "GRAVEYARD", bg: "radial-gradient(circle at center, #0a0a0a 0%, #000000 100%)", topEdge: "#a3a3a3", topMid: "#4d4d4d", center: "#000000", bottomMid: "#262626", bottomEdge: "#ffffff", shadow: "#ffffff" },
-    { name: "JACK-O-LANTERN", bg: "radial-gradient(circle at center, #1a0800 0%, #000000 100%)", topEdge: "#ff6600", topMid: "#cc3300", center: "#000000", bottomMid: "#661100", bottomEdge: "#ff9900", shadow: "#ff6600" }
-]
+    { name: "JACK-O-LANTERN", bg: "radial-gradient(circle at center, #1a0800 0%, #000000 100%)", topEdge: "#ff6600", topMid: "#cc3300", center: "#000000", bottomMid: "#661100", bottomEdge: "#ff9900", shadow: "#ff6600" },
+    { name: "TOXIC WASTE", bg: "radial-gradient(circle at center, #051400 0%, #000000 100%)", topEdge: "#39ff14", topMid: "#1a6600", center: "#000000", bottomMid: "#0d3300", bottomEdge: "#66ff33", shadow: "#39ff14" },
+    { name: "THE VOID", bg: "radial-gradient(circle at center, #050014 0%, #000000 100%)", topEdge: "#6600cc", topMid: "#330066", center: "#000000", bottomMid: "#1a0033", bottomEdge: "#9900ff", shadow: "#6600cc" },
+    { name: "SLASHER", bg: "radial-gradient(circle at center, #1f0000 0%, #000000 100%)", topEdge: "#e60000", topMid: "#800000", center: "#1a0000", bottomMid: "#330000", bottomEdge: "#ff4d4d", shadow: "#e60000" },
+    { name: "ASYLUM", bg: "radial-gradient(circle at center, #111111 0%, #000000 100%)", topEdge: "#d9d9d9", topMid: "#737373", center: "#000000", bottomMid: "#262626", bottomEdge: "#e6e6e6", shadow: "#d9d9d9" },
+    { name: "WITCH'S BREW", bg: "radial-gradient(circle at center, #0d001a 0%, #000000 100%)", topEdge: "#9900ff", topMid: "#5c0099", center: "#000000", bottomMid: "#1f0033", bottomEdge: "#bf80ff", shadow: "#9900ff" }]
 };
 
 let CurrentTheme = 3;
