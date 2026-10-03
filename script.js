@@ -59,14 +59,6 @@ const NoOfStars = 300;
 let Caps = new Array(256).fill(0)
 let stars
 let idleFrames = 0;
-const overlay = document.getElementById("CreepyOverlay");
-    if (overlay) {
-        if (CurrentTheme === 3) {
-            overlay.classList.add("active");
-        } else {
-            overlay.classList.remove("active");
-        }
-    }
 // this function is the background mainly 
 
 function GetTheme(){
@@ -178,7 +170,14 @@ function UpdateUI(){
         inset -20px 0 25px ${Theme.bottomEdge}30, 
         inset 20px 0 25px ${Theme.topEdge}30
     `;
-
+    const overlay = document.getElementById("CreepyOverlay");
+    if (overlay) {
+        if (CurrentTheme === 3) {
+            overlay.classList.add("active");
+        } else {
+            overlay.classList.remove("active");
+        }
+    }
 }
 UpdateUI();
     
