@@ -37,15 +37,15 @@ const Themes = {1:[
     ],
 
     3: [
-        { name: "HALLOWEEN", bg: "radial-gradient(circle at center, #1a0800 0%, #000000 100%)", topEdge: "#ff6600", topMid: "#992200", center: "#000000", bottomMid: "#330066", bottomEdge: "#9900ff", shadow: "#ff6600" },
-        { name: "TOXIC SLUDGE", bg: "radial-gradient(circle at center, #001a00 0%, #000000 100%)", topEdge: "#39ff14", topMid: "#1a6600", center: "#05001a", bottomMid: "#4a0080", bottomEdge: "#cc00ff", shadow: "#39ff14" },
-        { name: "PHANTOM BLOOD", bg: "radial-gradient(circle at center, #001a1a 0%, #000000 100%)", topEdge: "#00ffff", topMid: "#006666", center: "#1a0000", bottomMid: "#800000", bottomEdge: "#ff0000", shadow: "#00ffff" },
-        { name: "ZOMBIE VIRUS", bg: "radial-gradient(circle at center, #111a00 0%, #000000 100%)", topEdge: "#ccff00", topMid: "#668000", center: "#001a0a", bottomMid: "#004d1a", bottomEdge: "#00ff55", shadow: "#ccff00" },
-        { name: "NIGHTMARE", bg: "radial-gradient(circle at center, #1a000d 0%, #000000 100%)", topEdge: "#ff0077", topMid: "#800033", center: "#00051a", bottomMid: "#002280", bottomEdge: "#0055ff", shadow: "#ff0077" },
-        { name: "CURSED AMULET", bg: "radial-gradient(circle at center, #1a1500 0%, #000000 100%)", topEdge: "#ffcc00", topMid: "#996600", center: "#1a0000", bottomMid: "#660000", bottomEdge: "#cc0000", shadow: "#ffcc00" },
-        { name: "PARANORMAL", bg: "radial-gradient(circle at center, #0a0a0a 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#808080", center: "#001a08", bottomMid: "#004d1a", bottomEdge: "#00ff55", shadow: "#ffffff" },
-        { name: "DEMON PORTAL", bg: "radial-gradient(circle at center, #1a001a 0%, #000000 100%)", topEdge: "#ff00ff", topMid: "#800080", center: "#1a0500", bottomMid: "#992200", bottomEdge: "#ff4400", shadow: "#ff00ff" },
-        { name: "THE SLAUGHTER", bg: "radial-gradient(circle at center, #1a0000 0%, #000000 100%)", topEdge: "#ff0000", topMid: "#990000", center: "#0a0a0a", bottomMid: "#333333", bottomEdge: "#aaaaaa", shadow: "#ff0000" }
+        { name: "THE SLAUGHTER", bg: "radial-gradient(circle at center, #1a0000 0%, #000000 100%)", topEdge: "#ff0000", topMid: "#990000", center: "#0a0a0a", bottomMid: "#333333", bottomEdge: "#aaaaaa", shadow: "#ff0000" },
+        { name: "CARNAGE", bg: "radial-gradient(circle at center, #140000 0%, #000000 100%)", topEdge: "#ff1a1a", topMid: "#cc0000", center: "#000000", bottomMid: "#1a0000", bottomEdge: "#660000", shadow: "#ff1a1a" },
+        { name: "BLOOD BATH", bg: "radial-gradient(circle at center, #1f0005 0%, #000000 100%)", topEdge: "#ff0033", topMid: "#b30024", center: "#0a0002", bottomMid: "#290033", bottomEdge: "#660080", shadow: "#ff0033" },
+        { name: "THE BUTCHER", bg: "radial-gradient(circle at center, #1a1a1a 0%, #000000 100%)", topEdge: "#ffffff", topMid: "#a6a6a6", center: "#000000", bottomMid: "#4d0000", bottomEdge: "#990000", shadow: "#ffffff" },
+        { name: "FATAL WOUND", bg: "radial-gradient(circle at center, #0a0000 0%, #000000 100%)", topEdge: "#ff0055", topMid: "#990033", center: "#000000", bottomMid: "#002244", bottomEdge: "#0055aa", shadow: "#ff0055" },
+        { name: "HEMORRHAGE", bg: "radial-gradient(circle at center, #290000 0%, #000000 100%)", topEdge: "#ff3333", topMid: "#cc0000", center: "#1a0000", bottomMid: "#000000", bottomEdge: "#330000", shadow: "#ff3333" },
+        { name: "DEATH ROW", bg: "radial-gradient(circle at center, #140a00 0%, #000000 100%)", topEdge: "#ff4400", topMid: "#992200", center: "#0a0a0a", bottomMid: "#4d4d4d", bottomEdge: "#8c8c8c", shadow: "#ff4400" },
+        { name: "CRIMSON TIDE", bg: "radial-gradient(circle at center, #0f0000 0%, #000000 100%)", topEdge: "#e60000", topMid: "#800000", center: "#050000", bottomMid: "#1a0000", bottomEdge: "#b30000", shadow: "#e60000" },
+        { name: "PURE GORE", bg: "radial-gradient(circle at center, #1a0505 0%, #000000 100%)", topEdge: "#ff0022", topMid: "#b30017", center: "#0a0000", bottomMid: "#590000", bottomEdge: "#cc0000", shadow: "#ff0022" }
     ]
 };
 
