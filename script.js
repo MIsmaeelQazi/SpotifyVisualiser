@@ -44,7 +44,7 @@ const Themes = {1:[
 ]
 };
 
-let CurrentTheme = 1;
+let CurrentTheme = 3;
 let colors = Themes[CurrentTheme];
 let DaTheme = 0;
 let Mode = "Straight"
